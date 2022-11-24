@@ -1,76 +1,177 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { useState } from "react";
+import { toast } from "react-hot-toast";
+import { AuthContext } from "../component/context/AuthProvider/AuthProvider"
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
-const SignUp = () => {
-  document.title = "Sign Up";
+const SignUp= () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
+
+  const [userInfo, setUserInfo] = useState({
+    email: "",
+    password: "",
+  });
+
+  const [errors, setErrors] = useState({
+    email: "",
+    password: "",
+    general: "",
+  });
+
+  const [accepted, setAccepted] = useState(false);
+  const { createUser, setLoading } = useContext(AuthContext);
+
+  let handleLogin = (e) => {
+    e.preventDefault();
+    let form = e.target;
+    let email = form.email.value;
+    let password = form.password.value;
+    let name = form.name.value;
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        setLoading(true);
+        user.displayName = name;
+        const currentUser = {
+          email: userInfo.email,
+        };
+        fetch(" https://b6a11-service-review-server-side-kp-orus-steel.vercel.app/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            // local storage is the easiest but not the best place to store jwt token
+            localStorage.setItem("photo-token", data.token);
+            navigate(from, { replace: true });
+          });
+        e.target.reset();
+      })
+      .catch((error) => {
+        console.error(error);
+        setErrors({ ...errors, general: error.message });
+      });
+  };
+
+  const handleEmailChange = (e) => {
+    const email = e.target.value;
+
+    if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+      setErrors({ ...errors, email: "Please provide a valid email" });
+      setUserInfo({ ...userInfo, email: "" });
+    } else {
+      setErrors({ ...errors, email: "" });
+      setUserInfo({ ...userInfo, email: e.target.value });
+    }
+  };
+
+  const handlePasswordChange = (e) => {
+    const password = e.target.value;
+    const lengthError = password.length < 6;
+    const noSymbolError = !/[\!\@\#\$\%\^\&\*]{1,}/.test(password);
+    const noCapitalLetterError = !/[A-Z]{1,}/.test(password);
+
+    if (lengthError) {
+      setErrors({ ...errors, password: "Must be at least 6 characters" });
+      setUserInfo({ ...userInfo, password: "" });
+    } else if (noSymbolError) {
+      setErrors({ ...errors, password: "Must have a unique number" });
+      setUserInfo({ ...userInfo, password: " " });
+    } else if (noCapitalLetterError) {
+      setErrors({ ...errors, password: "Must have a capital letter" });
+      setUserInfo({ ...userInfo, password: " " });
+    } else {
+      setErrors({ ...errors, password: "" });
+      setUserInfo({ ...userInfo, password: e.target.value });
+    }
+  };
+
+  let check = (e) => {
+    setAccepted(e.target.checked);
+  };
+
+  document.title = "Sign Up"
   return (
-    <div className='container mx-auto p-4'>
-      <h1 className='text-4xl mx-auto'>Sign Up Now</h1>
-      <div className='flex flex-col mx-auto max-w-md p-6 rounded-md sm:p-10 dark:bg-gray-900 dark:text-gray-100'>
-        <div className='mb-8 text-center'>
-          <h1 className='my-3 text-4xl font-bold'>Sign Up</h1>
-          <p className='text-sm dark:text-gray-400'>
-            Sign Up to create your account
+    <div className='hero min-h-screen bg-base-200' onSubmit={handleLogin}>
+      <div className='hero-content flex-col lg:flex-row-reverse'>
+        <div className='text-center lg:textcenter'>
+          <img
+            className='md:w-2/3 inline md:inline-block '
+            src='https://img.icons8.com/external-smashingstocks-hand-drawn-black-smashing-stocks/99/null/external-digital-camera-graphic-design-and-photography-smashingstocks-hand-drawn-black-smashing-stocks.png'
+            alt='logo'
+          />
+          <h1 className='text-5xl font-bold'>Register Now !</h1>
+          <p className='py-6'>
+            Welcome to User. Please register for using our services.
           </p>
         </div>
-        <form
-          novalidate=''
-          action=''
-          className='space-y-12 ng-untouched ng-pristine ng-valid'>
-          <div className='space-y-4'>
-            <div>
-              <label for='email' className='block mb-2 text-sm'>
-                Full Name
+        <form className='card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100'>
+          <div className='card-body'>
+            <div className='form-control'>
+              <label className='label'>
+                <span className='label-text'>Name</span>
               </label>
               <input
-                type='name'
+                type='text'
                 name='name'
-                placeholder='Md Fardin Khan'
-                className='w-full px-3 py-2 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100'
+                placeholder='Enter your name'
+                className='input input-bordered'
+                required
               />
-            </div>
-            <div>
-              <label for='email' className='block mb-2 text-sm'>
-                Email address
+              <label className='label'>
+                <span className='label-text'>Email</span>
               </label>
               <input
                 type='email'
                 name='email'
-                placeholder='leroy@jenkins.com'
-                className='w-full px-3 py-2 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100'
+                placeholder='email'
+                className='input input-bordered'
+                required
+                onChange={handleEmailChange}
               />
+              {errors.email && <p className='text-red-600'>{errors.email}</p>}
             </div>
-            <div>
-              <div className='flex justify-between mb-2'>
-                <label for='password' className='text-sm'>
-                  Password
-                </label>
-              </div>
+            <div className='form-control'>
+              <label className='label'>
+                <span className='label-text'>Password</span>
+              </label>
               <input
                 type='password'
                 name='password'
-                placeholder='*****'
-                className='w-full px-3 py-2 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100'
+                placeholder='password'
+                className='input input-bordered'
+                required
+                onChange={handlePasswordChange}
               />
+              {errors.password && (
+                <p className='text-red-600'>{errors.password}</p>
+              )}
+
+              <small>
+                {" "}
+                <Link to='/login'>Already have a account!! Login</Link>
+              </small>
+              <div className='flex text-xl'>
+                <input type='checkbox' onClick={check} required />
+                <label className='label'>
+                  <span className='label-text'>
+                    Accept terms and conditions
+                  </span>
+                </label>
+              </div>
             </div>
-          </div>
-          <div className='space-y-2'>
-            <div>
-              <button
-                type='button'
-                className='w-full px-8 py-3 font-semibold rounded-md dark:bg-violet-400 dark:text-gray-900'>
-                Sign in
+            {errors.general && <p className='text-red-600'>{errors.general}</p>}
+            <div className='form-control mt-6'>
+              <button className='btn btn-primary' disabled={!accepted}>
+                Submit
               </button>
             </div>
-            <p className='px-6 text-sm text-center dark:text-gray-400'>
-              Have an account yet?
-              <Link
-                to="/login"
-                className='hover:underline dark:text-violet-400'>
-                Login In
-              </Link>
-              .
-            </p>
           </div>
         </form>
       </div>

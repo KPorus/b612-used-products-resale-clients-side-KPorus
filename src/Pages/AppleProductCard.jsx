@@ -9,7 +9,7 @@ const AppleProductCard = ({items}) => {
         <div className='flex space-x-4'>
           <img
             alt=''
-            src={user?.img}
+            src={user?.photoURL}
             className='object-cover w-12 h-12 rounded-full shadow dark:bg-gray-500'
           />
           <div className='flex flex-col space-y-1'>

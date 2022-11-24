@@ -1,72 +1,216 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../component/context/AuthProvider/AuthProvider";
+import { toast } from 'react-hot-toast';
+import { FcGoogle } from "react-icons/fc";
+import { GoogleAuthProvider } from "firebase/auth";
 
 const Login = () => {
-  document.title = "Login";
+  const { login,googleLogin, setLoading, setUser, forgetPassword } = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const from = location.state?.from?.pathname || "/";
+
+  const [userInfo, setUserInfo] = useState({
+    email: "",
+    password: "",
+  });
+
+  const [errors, setErrors] = useState({
+    email: "",
+    password: "",
+    general: "",
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const currentUser = {
+      email: userInfo.email
+    }
+
+    console.log(currentUser);
+
+    login(userInfo.email, userInfo.password)
+      .then((result) => {
+        toast.success("success");
+        let user = result.user;
+        console.log(user);
+        setLoading(true)
+        setUser(user);
+
+        fetch(' https://b6a11-service-review-server-side-kp-orus-steel.vercel.app/jwt', {
+          method: 'POST',
+          headers: {
+              'content-type': 'application/json'
+          },
+          body: JSON.stringify(currentUser)
+      })
+          .then(res => res.json())
+          .then(data => {
+              // local storage is the easiest but not the best place to store jwt token
+              localStorage.setItem('photo-token', data.token);
+              e.target.reset();
+              navigate(from, { replace: true });
+          });
+
+      })
+      .catch((err) => {
+        console.log(err);
+        setErrors({ ...errors, general: err.message });
+      });
+  };
+
+  const handleEmailChange = (e) => {
+    const email = e.target.value;
+
+    if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+      setErrors({ ...errors, email: "Please provide a valid email" });
+      setUserInfo({ ...userInfo, email: "" });
+    } else {
+      setErrors({ ...errors, email: "" });
+      setUserInfo({ ...userInfo, email: e.target.value });
+    }
+  };
+
+  const handlePasswordChange = (e) => {
+    const password = e.target.value;
+    const lengthError = password.length < 6;
+    const noSymbolError = !/[\!\@\#\$\%\^\&\*]{1,}/.test(password);
+    const noCapitalLetterError = !/[A-Z]{1,}/.test(password);
+
+    if (lengthError) {
+      setErrors({ ...errors, password: "Must be at least 6 characters" });
+      setUserInfo({ ...userInfo, password: "" });
+    }
+    else if (noSymbolError) {
+      setErrors({ ...errors, password: "Must have a unique number" });
+      setUserInfo({ ...userInfo, password: " " });
+    }
+    else if (noCapitalLetterError) {
+      setErrors({ ...errors, password: "Must have a capital letter" });
+      setUserInfo({ ...userInfo, password: " " });
+    }
+    else {
+      setErrors({ ...errors, password: "" });
+      setUserInfo({ ...userInfo, password: e.target.value });
+    }
+  };
+
+  let googleProvider = new GoogleAuthProvider();
+  let handleGoogleLogin = () => {
+    googleLogin(googleProvider)
+      .then((result) => {
+        const user = result.user;
+        setLoading(true)
+        console.log(user)
+        toast.success("Login successfull!")
+
+        const currentUser = {
+          email: user.email
+        }
+        console.log(currentUser);
+        fetch(' https://b6a11-service-review-server-side-kp-orus-steel.vercel.app/jwt', {
+          method: 'POST',
+          headers: {
+              'content-type': 'application/json'
+          },
+          body: JSON.stringify(currentUser)
+      })
+          .then(res => res.json())
+          .then(data => {
+              console.log(data);
+              // local storage is the easiest but not the best place to store jwt token
+              localStorage.setItem('photo-token', data.token);
+              navigate(from, { replace: true });
+          });
+        // ...
+      }).catch((error) => {
+        console.log(error);
+        toast.error("login failled")
+      });
+  }
+
+  let resetPass = ()=>
+  {
+    setLoading(true);
+    forgetPassword(userInfo.email)
+    .then(() => {
+      // Password reset email sent!
+      // ..
+      toast.success("Check your Mail. Reset password mail has been sent")
+    })
+    .catch((error) => {
+      const errorMessage = error.message;
+      setErrors({ ...errors, general: errorMessage });
+      // ..
+    });
+  }
+
+  
+  document.title = "Login form"
+
   return (
-    <div className="container mx-auto p-4">
-      <h2 className='text-4xl '>Login part</h2>
-      <div className='w-full mx-auto max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-900 dark:text-gray-100'>
-        <h1 className='text-2xl font-bold text-center'>Login</h1>
-        <form
-          novalidate=''
-          action=''
-          className='space-y-6 ng-untouched ng-pristine ng-valid'>
-          <div className='space-y-1 text-sm'>
-            <label for='username' className='block dark:text-gray-400'>
-              Username
-            </label>
-            <input
-              type='text'
-              name='name'
-              placeholder='Username'
-              className='border w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400'
-            />
-          </div>
-          <div className='space-y-1 text-sm'>
-            <label for='password' className='block dark:text-gray-400'>
-              Password
-            </label>
-            <input
-              type='password'
-              name='password'
-              placeholder='Password'
-              className=' border w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400'
-            />
-            <div className='flex justify-end text-xs dark:text-gray-400'>
-              <span>
-                Forgot Password?
-              </span>
+    <div className='hero  my-20 container mx-auto'>
+      <div className='hero-content grid md:gap-20 md:grid-cols-2 flex-col lg:flex-row'>
+        <div className='text-center lg:text-left'>
+        <img className="md:w-2/3 inline md:block" src="https://img.icons8.com/external-smashingstocks-hand-drawn-black-smashing-stocks/99/null/external-digital-camera-graphic-design-and-photography-smashingstocks-hand-drawn-black-smashing-stocks.png" alt="logo"/>
+        <p className="font-[Lato] font-bold text-3xl text-center">Hi please login to explore and add services.<br/> Have fun.</p>
+        </div>
+        <div className='card sm:contents md:flex flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 py-20'>
+          <h1 className='text-5xl text-center font-bold'>Login</h1>
+          <form onSubmit={handleSubmit} className='card-body'>
+            <div className='form-control'>
+              <label className='label'>
+                <span className='label-text'>Email</span>
+              </label>
+              <input
+                type='text'
+                name='email'
+                placeholder='email'
+                onChange={handleEmailChange}
+                className='input input-bordered'
+              />
+              {errors.email && <p className="text-red-600">{errors.email}</p>}
             </div>
-          </div>
-          <button className='block w-full p-3 text-center rounded-sm dark:text-gray-900 dark:bg-violet-400'>
-            Sign in
-          </button>
-        </form>
-        <div className='flex items-center pt-4 space-x-1'>
-          <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
-          <p className='px-3 text-sm dark:text-gray-400'>
-            Login with social accounts
+            <div className='form-control'>
+              <label className='label'>
+                <span className='label-text'>Password</span>
+              </label>
+              <input
+                type='password'
+                name='password'
+                placeholder='password'
+                className='input input-bordered'
+                onChange={handlePasswordChange}
+              />
+               {errors.password && <p className="text-red-600">{errors.password}</p>}
+              <label className='sm:flex sm:px-1 sm:py-2 sm:justify-between sm:items-center py-2 font-medium'>
+                <a href="#my-modal-2" className="btn">Forgot password?</a>
+                <div className="modal" id="my-modal-2">
+                  <div className="modal-box">
+                    <h3 className="font-bold text-lg">Reset Password!!</h3>
+                    <p className="py-4">Click the reset button to reset password</p>
+                    <div className="modal-action">
+                      <a href="#" className="btn" onClick={resetPass}>Reset Password</a>
+                    </div>
+                  </div>
+                </div>
+              </label>
+            </div>
+            {errors.general && <p className="text-red-600">{errors.general}</p>}
+            <div className='form-control mt-6'>
+              <input className='btn btn-[#FFDBC7]' type='submit' value='Login' />
+            </div>
+          </form>
+          <p className='text-center'>
+            New here{" "}
+            <Link className='text-[#836B5D] font-bold' to='/signup'>
+              Sign Up
+            </Link>{" "}
           </p>
-          <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
+          <button className="btn btn-ghost w-1/2 mx-auto mt-2" onClick={handleGoogleLogin}><FcGoogle className="text-2xl mr-2"></FcGoogle>Google Login</button>
         </div>
-        <div className='flex justify-center space-x-4'>
-          <button aria-label='Log in with Google' className='p-3 rounded-sm'>
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              viewBox='0 0 32 32'
-              className='w-5 h-5 fill-current'>
-              <path d='M16.318 13.714v5.484h9.078c-0.37 2.354-2.745 6.901-9.078 6.901-5.458 0-9.917-4.521-9.917-10.099s4.458-10.099 9.917-10.099c3.109 0 5.193 1.318 6.38 2.464l4.339-4.182c-2.786-2.599-6.396-4.182-10.719-4.182-8.844 0-16 7.151-16 16s7.156 16 16 16c9.234 0 15.365-6.49 15.365-15.635 0-1.052-0.115-1.854-0.255-2.651z'></path>
-            </svg>
-          </button>
-        </div>
-        <p className='text-xs text-center sm:px-6 dark:text-gray-400'>
-          Don't have an account?
-          <Link to="/signUp"
-            className='underline dark:text-gray-100 p-2 font-bold'>
-            Sign up
-          </Link>
-        </p>
       </div>
     </div>
   );
