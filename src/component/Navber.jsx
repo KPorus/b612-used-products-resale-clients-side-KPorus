@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "./context/AuthProvider/AuthProvider";
 
 const Navber = () => {
-  const {user,usersignOut} = useContext(AuthContext);
+  const { user, usersignOut } = useContext(AuthContext);
   let handleSignOut = () => {
     usersignOut()
       .then(() => {
@@ -38,39 +38,58 @@ const Navber = () => {
             tabIndex={0}
             className='menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52'>
             <li>
-              <Link to='/' className="font-bold uppercase">Home</Link>
+              <Link to='/' className='font-bold uppercase'>
+                Home
+              </Link>
             </li>
             <li>
-              {
-                user? (
-                  <button className='uppercase font-bold' onClick={handleSignOut}>
-                    LogOut
-                  </button>
-                ):<Link  className='uppercase  font-bold' to='/login'>Login</Link>
-              }
+              <Link to='/order' className='font-bold uppercase'>
+                Order
+              </Link>
+            </li>
+            <li>
+              {user ? (
+                <button className='uppercase font-bold' onClick={handleSignOut}>
+                  LogOut
+                </button>
+              ) : (
+                <Link className='uppercase  font-bold' to='/login'>
+                  Login
+                </Link>
+              )}
             </li>
           </ul>
         </div>
         <Link to='/' className='normal-case text-xl'>
-         <div className="flex items-center p-2">
-         <img src="../mobile.svg"></img><span className="font-bold uppercase">Buy&Sell</span>
-         </div>
+          <div className='flex items-center p-2'>
+            <img src='../mobile.svg'></img>
+            <span className='font-bold uppercase'>Buy&Sell</span>
+          </div>
         </Link>
       </div>
       <div className='navbar-center hidden lg:flex'>
         <ul className='menu menu-horizontal p-0'>
           <li>
-            <Link to='/' className="font-bold uppercase">Home</Link>
+            <Link to='/' className='font-bold uppercase'>
+              Home
+            </Link>
           </li>
           <li>
-              {
-                user? (
-                  <button className='uppercase font-bold' onClick={handleSignOut}>
-                    LogOut
-                  </button>
-                ):<Link  className='uppercase font-bold' to='/login'>Login</Link>
-              }
-            </li>
+            <Link to='/order' className='font-bold uppercase'>
+              Order
+            </Link>
+          </li>
+          <li>
+            {user ? (
+              <button className='uppercase font-bold' onClick={handleSignOut}>
+                LogOut
+              </button>
+            ) : (
+              <Link className='uppercase font-bold' to='/login'>
+                Login
+              </Link>
+            )}
+          </li>
         </ul>
       </div>
       <div className='navbar-end'>
