@@ -38,7 +38,7 @@ const HomeCatagorys = () => {
           <Link to={`/apple/${appleId[0]}`}>Apple</Link>
         </div>
         <div className='flex items-center justify-between p-10 border-l-8 sm:py-8 dark:border-violet-400 dark:bg-gray-900 dark:text-gray-100'>
-          <Link to={`/samsung/${waltonId[0]}`}>Walton</Link>
+          <Link to={`/walton/${waltonId[0]}`}>Walton</Link>
         </div>
       </div>
     </div>

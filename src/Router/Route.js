@@ -47,7 +47,7 @@ export const route = createBrowserRouter([
                 element:<WaltonProducts></WaltonProducts>,
                 loader:async ({params})=>
                 {
-                    return fetch(` http://localhost:5000/apple/${params.id}`)
+                    return fetch(` http://localhost:5000/walton/${params.id}`)
                 }
             },
         ]
