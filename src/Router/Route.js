@@ -4,6 +4,9 @@ import Home from "../Pages/Home";
 import Login from "../Pages/Login";
 import SignUp from "../Pages/SignUp";
 import ErrorPage from "../component/ErrorPage"
+import SamsungProducts from "../Pages/SamsungProducts";
+import AppleProducts from "../Pages/AppleProducts";
+import WaltonProducts from "../Pages/WaltonProducts.jsx";
 
 export const route = createBrowserRouter([
     {
@@ -22,6 +25,30 @@ export const route = createBrowserRouter([
             {
                 path:"/signUp",
                 element:<SignUp></SignUp>,
+            },
+            {
+                path:"/samsung/:id",
+                element:<SamsungProducts></SamsungProducts>,
+                loader:async ({params})=>
+                {
+                    return fetch(` http://localhost:5000/samsung/${params.id}`)
+                }
+            },
+            {
+                path:"/apple/:id",
+                element:<AppleProducts></AppleProducts>,
+                loader:async ({params})=>
+                {
+                    return fetch(` http://localhost:5000/apple/${params.id}`)
+                }
+            },
+            {
+                path:"/walton/:id",
+                element:<WaltonProducts></WaltonProducts>,
+                loader:async ({params})=>
+                {
+                    return fetch(` http://localhost:5000/apple/${params.id}`)
+                }
             },
         ]
     }
