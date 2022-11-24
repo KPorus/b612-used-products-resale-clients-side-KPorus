@@ -153,12 +153,11 @@ const Login = () => {
   return (
     <div className='hero  my-20 container mx-auto'>
       <div className='hero-content grid md:gap-20 md:grid-cols-2 flex-col lg:flex-row'>
-        <div className='text-center lg:text-left'>
-        <img className="md:w-2/3 inline md:block" src="https://img.icons8.com/external-smashingstocks-hand-drawn-black-smashing-stocks/99/null/external-digital-camera-graphic-design-and-photography-smashingstocks-hand-drawn-black-smashing-stocks.png" alt="logo"/>
-        <p className="font-[Lato] font-bold text-3xl text-center">Hi please login to explore and add services.<br/> Have fun.</p>
+        <div className='text-center lg:text-left w-[100%]'>
+        <img className=" w-[68%] md:w-[75%] lg:w-full inline md:block" src="../mobile.svg" alt="logo"/>
         </div>
-        <div className='card sm:contents md:flex flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 py-20'>
-          <h1 className='text-5xl text-center font-bold'>Login</h1>
+        <div className='card sm:contents md:flex flex-shrink-0 w-full md:w-[120%] lg:w-[135%] shadow-2xl bg-base-100 py-20'>
+          <h1 className='text-5xl text-center font-bold uppercase text-slate-800'>Login</h1>
           <form onSubmit={handleSubmit} className='card-body'>
             <div className='form-control'>
               <label className='label'>
@@ -186,13 +185,13 @@ const Login = () => {
               />
                {errors.password && <p className="text-red-600">{errors.password}</p>}
               <label className='sm:flex sm:px-1 sm:py-2 sm:justify-between sm:items-center py-2 font-medium'>
-                <a href="#my-modal-2" className="btn">Forgot password?</a>
+                <a href="#my-modal-2" className="btn btn-primary bg-[#003566] text-white">Forgot password?</a>
                 <div className="modal" id="my-modal-2">
                   <div className="modal-box">
                     <h3 className="font-bold text-lg">Reset Password!!</h3>
                     <p className="py-4">Click the reset button to reset password</p>
                     <div className="modal-action">
-                      <a href="#" className="btn" onClick={resetPass}>Reset Password</a>
+                      <a href="#" className="btn btn-primary bg-[#003566] text-white" onClick={resetPass}>Reset Password</a>
                     </div>
                   </div>
                 </div>
@@ -200,12 +199,12 @@ const Login = () => {
             </div>
             {errors.general && <p className="text-red-600">{errors.general}</p>}
             <div className='form-control mt-6'>
-              <input className='btn btn-[#FFDBC7]' type='submit' value='Login' />
+              <input className='btn btn-primary bg-[#003566] text-white' type='submit' value='Login' />
             </div>
           </form>
           <p className='text-center'>
             New here{" "}
-            <Link className='text-[#836B5D] font-bold' to='/signup'>
+            <Link className='text-[#003566] font-bold' to='/signup'>
               Sign Up
             </Link>{" "}
           </p>

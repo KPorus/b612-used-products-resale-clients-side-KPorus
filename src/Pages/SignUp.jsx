@@ -99,19 +99,8 @@ const SignUp= () => {
   document.title = "Sign Up"
   return (
     <div className='hero min-h-screen bg-base-200' onSubmit={handleLogin}>
-      <div className='hero-content flex-col lg:flex-row-reverse'>
-        <div className='text-center lg:textcenter'>
-          <img
-            className='md:w-2/3 inline md:inline-block '
-            src='https://img.icons8.com/external-smashingstocks-hand-drawn-black-smashing-stocks/99/null/external-digital-camera-graphic-design-and-photography-smashingstocks-hand-drawn-black-smashing-stocks.png'
-            alt='logo'
-          />
-          <h1 className='text-5xl font-bold'>Register Now !</h1>
-          <p className='py-6'>
-            Welcome to User. Please register for using our services.
-          </p>
-        </div>
-        <form className='card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100'>
+      <div className='hero-content'>
+        <form className='card flex-shrink-0 w-full md:w-[120%] lg:w-[140%] shadow-2xl bg-base-100'>
           <div className='card-body'>
             <div className='form-control'>
               <label className='label'>
@@ -168,7 +157,7 @@ const SignUp= () => {
             </div>
             {errors.general && <p className='text-red-600'>{errors.general}</p>}
             <div className='form-control mt-6'>
-              <button className='btn btn-primary' disabled={!accepted}>
+              <button className='btn btn-primary bg-[#003566] text-white' disabled={!accepted}>
                 Submit
               </button>
             </div>
