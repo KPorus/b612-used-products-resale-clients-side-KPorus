@@ -21,7 +21,7 @@ const HomeCatagorys = () => {
     let appleId = apple.map((id)=>id._id);
 
     useEffect(() => {
-        fetch("http://localhost:5000/apple")
+        fetch("http://localhost:5000/walton")
         .then(res => res.json())
         .then(data => setwalton(data))
     }, []);
