@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import toast from "react-hot-toast";
 import { AuthContext } from "../component/context/AuthProvider/AuthProvider";
 
 const AddProduct = () => {
@@ -24,8 +25,6 @@ const AddProduct = () => {
         details
     }
     console.log(userProduct );
-    if(brandName === "samsung")
-    {
         fetch(`http://localhost:5000/userProduct`,{
             method: 'POST',
             headers: {
@@ -34,8 +33,10 @@ const AddProduct = () => {
             body: JSON.stringify(userProduct)
         })
         .then(res=>res.json())
-        .then(data=>console.log(data));
-    }
+        .then(data=>{
+          console.log(data)
+          toast.success("Product has beed added");
+        });
   }
 
   document.title = "Add product"
