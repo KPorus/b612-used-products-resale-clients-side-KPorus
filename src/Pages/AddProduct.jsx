@@ -68,13 +68,13 @@ const AddProduct = () => {
   document.title = "Add product";
   return (
     <div className='container mx-auto'>
-      <h1 className='uppercase font-semibold text-2xl'>Add Your product</h1>
-      <section className='p-6 dark:bg-gray-800 dark:text-gray-50'>
+      <h1 className='uppercase font-semibold text-2xl border-b-8 text-center'>Add Your product</h1>
+      <section className='p-6 dark:bg-gray-800 dark:text-gray-50 m-6'>
         <form
           onSubmit={addProduct}
           novalidate=''
           action=''
-          className='container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid'>
+          className='container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid m-12'>
           <fieldset className='grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm dark:bg-gray-900'>
             <div className='space-y-2 col-span-full lg:col-span-1'>
               <p className='font-medium'>Product Inormation</p>
@@ -181,7 +181,7 @@ const AddProduct = () => {
                   className='w-full input input-bordered rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900'
                 />
               </div>
-              <input className='btn btn-secondary mt-6' type='submit'></input>
+              <input className='btn btn-primary mt-6' type='submit'></input>
             </div>
           </fieldset>
         </form>

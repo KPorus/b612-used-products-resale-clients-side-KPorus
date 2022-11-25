@@ -10,6 +10,7 @@ import Desboard from "../Pages/Desboard";
 import WaltonProducts from "../Pages/WaltonProducts.jsx";
 import PrivateRoute from "./PrivateRoute";
 import AddProduct from "../Pages/AddProduct";
+import YourProduct from "../Pages/YourProduct";
 
 export const route = createBrowserRouter([
     {
@@ -36,6 +37,10 @@ export const route = createBrowserRouter([
             {
                 path:"/addProduct",
                 element:<PrivateRoute><AddProduct></AddProduct></PrivateRoute>,
+            },
+            {
+                path:"/youProduct",
+                element:<PrivateRoute><YourProduct></YourProduct></PrivateRoute>,
             },
             {
                 path:"/samsung/:id",

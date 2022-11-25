@@ -19,7 +19,7 @@ const AppleProducts = () => {
   console.log(product);
   return (
     <div className='container mx-auto'>
-      <h1>Apple</h1>
+      <h1 className="font-bold text-4xl text-center uppercase text-slate-800">Iphone</h1>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 m-14'>
         {product.map((items) => (
           <AppleProductCard  items={items}></AppleProductCard>
