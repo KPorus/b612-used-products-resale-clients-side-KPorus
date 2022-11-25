@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { createContext } from "react";
-import { useLoaderData } from "react-router-dom";
+import Loading from "../component/Loading";
 import SamsungProductCard from "./SamsungProductCard";
 
 
@@ -13,6 +13,10 @@ const SamsungProducts = () => {
       return data
   }
   })
+
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
 
   // let samsung = useLoaderData();
   // let data = samsung[0];

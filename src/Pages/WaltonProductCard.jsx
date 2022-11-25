@@ -1,25 +1,20 @@
-import React, { useContext } from "react";
-import { AuthContext } from "../component/context/AuthProvider/AuthProvider";
+import React from "react";
+
 
 const WaltonProductCard = ({items}) => {
-    const { user } = useContext(AuthContext);
-    let { ProductName, img, seller, details, newPrice, OriginalPrice, date } = items;
+    let { ProductName,photo,sellerName, details, newPrice, originalPrice, date } = items;
     return (
       <div className='flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-md dark:bg-gray-900 dark:text-gray-100'>
         <div className='flex space-x-4'>
-          <img
-            alt=''
-            src={user?.img}
-            className='object-cover w-12 h-12 rounded-full shadow dark:bg-gray-500'
-          />
+          
           <div className='flex flex-col space-y-1'>
-            <span className='text-sm font-semibold'>{seller}</span>
+            <span className='text-sm font-semibold'>{sellerName}</span>
             <span className='text-xs dark:text-gray-400'>{date}</span>
           </div>
         </div>
         <div>
           <img
-            src={img}
+            src={photo}
             alt=''
             className='object-cover w-full mb-4 h-60 sm:h-96 dark:bg-gray-500'
           />
@@ -29,7 +24,7 @@ const WaltonProductCard = ({items}) => {
         <div className='flex flex-wrap justify-between'>
           <div className='flex space-x-2 text-sm dark:text-gray-400'>
               <strong>Price: ${newPrice}</strong>
-              <strong>Original Price: ${OriginalPrice}</strong>
+              <strong>Original Price: ${originalPrice}</strong>
           </div>
         </div>
         <button className="btn btn-primary font-bold uppercase btn-info">Purchase</button>

@@ -5,41 +5,67 @@ import { AuthContext } from "../component/context/AuthProvider/AuthProvider";
 const AddProduct = () => {
   const { user } = useContext(AuthContext);
 
-  let addProduct =(e)=>
-  {
+  const imageHostKey = "352df8fe2fc9dcd8f6c608a683804722";
+
+  let addProduct = (e) => {
     e.preventDefault();
     let form = e.target;
+    let sellerName = form.name.value;
     let ProductName = form.ProductName.value;
     let brandName = form.brandName.value;
     let email = form.email.value;
     let newPrice = form.price.value;
     let originalPrice = form.OriginalPrice.value;
     let details = form.details.value;
-   
-    let userProduct ={
-        ProductName,
-        brandName,
-        email,
-        newPrice,
-        originalPrice,
-        details
-    }
-    console.log(userProduct );
-        fetch(`http://localhost:5000/userProduct`,{
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(userProduct)
-        })
-        .then(res=>res.json())
-        .then(data=>{
-          console.log(data)
-          toast.success("Product has beed added");
-        });
-  }
+    let img = e.target.image.files
 
-  document.title = "Add product"
+
+    const image = img[0];
+    console.log(image);
+    const formData = new FormData();
+    formData.append('image', image);
+    const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`
+    fetch(url, {
+        method: 'POST',
+        body: formData
+    })
+    .then(res => res.json())
+    .then(imgData => {
+      if(imgData.success){
+          console.log(imgData.data.url);
+          let userProduct = {
+            sellerName,
+            img,
+            ProductName,
+            brandName,
+            email,
+            newPrice,
+            originalPrice,
+            details,
+            photo:imgData.data.url
+          };
+
+          // save doctor information to the database
+          console.log(userProduct);
+          fetch(`http://localhost:5000/userProduct`, {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(userProduct),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+              toast.success("Product has beed added");
+            });
+      }
+  })
+    
+   
+  };
+
+  document.title = "Add product";
   return (
     <div className='container mx-auto'>
       <h1 className='uppercase font-semibold text-2xl'>Add Your product</h1>
@@ -57,6 +83,30 @@ const AddProduct = () => {
               </p>
             </div>
             <div className='grid grid-cols-6 gap-4 col-span-full  lg:col-span-3'>
+              <div className='col-span-full sm:col-span-3'>
+                <label htmlFor='name' className='text-sm'>
+                  Seller Name
+                </label>
+                <input
+                  id='name'
+                  name='name'
+                  type='text'
+                  placeholder='seller name'
+                  className='w-full input input-bordered rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900'
+                />
+              </div>
+              <div className='col-span-full sm:col-span-3'>
+                <label htmlFor='img' className='text-sm'>
+                  Product photo
+                </label>
+                <input
+                  id='img'
+                  name='image'
+                  type='file'
+                  placeholder='Product name'
+                  className='w-full input input-bordered rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900'
+                />
+              </div>
               <div className='col-span-full sm:col-span-3'>
                 <label htmlFor='ProductName' className='text-sm'>
                   Product name
@@ -131,7 +181,7 @@ const AddProduct = () => {
                   className='w-full input input-bordered rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900'
                 />
               </div>
-              <input className="btn btn-secondary mt-6" type='submit'></input>
+              <input className='btn btn-secondary mt-6' type='submit'></input>
             </div>
           </fieldset>
         </form>

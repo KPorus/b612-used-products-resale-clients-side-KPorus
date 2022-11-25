@@ -1,24 +1,31 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import Loading from "../component/Loading";
 import WaltonProductCard from "./WaltonProductCard";
 
 const WaltonProducts = () => {
-  const { isLoading, error, data: product= [] } = useQuery({
-    queryKey: ['userPuduct'],
+  const {
+    isLoading,
+    error,
+    data: product = [],
+  } = useQuery({
+    queryKey: ["userPuduct"],
     queryFn: async () => {
       const res = await fetch(`http://localhost:5000/userProduct/walton`);
       const data = await res.json();
-      return data
+      return data;
+    },
+  });
+  if (isLoading) {
+    return <Loading></Loading>;
   }
-  })
   console.log(product);
   return (
-    <div className="container mx-auto">
+    <div className='container mx-auto'>
       <h1>Walton</h1>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 m-14'>
         {product.map((items) => (
-          <WaltonProductCard  items={items}></WaltonProductCard>
+          <WaltonProductCard items={items}></WaltonProductCard>
         ))}
       </div>
     </div>

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import Loading from "../component/Loading";
 import AppleProductCard from "./AppleProductCard";
 
 const AppleProducts = () => {
@@ -12,6 +12,10 @@ const AppleProducts = () => {
       return data
   }
   })
+
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
   console.log(product);
   return (
     <div className='container mx-auto'>
