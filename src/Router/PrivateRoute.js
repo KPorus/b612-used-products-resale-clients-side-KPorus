@@ -11,11 +11,11 @@ import Loading from "../component/Loading"
 */
 
 const PrivateRoute = ({children}) => {
-    const {user, loading} = useContext(AuthContext);
+    const {user, loading, setLoading} = useContext(AuthContext);
     const location = useLocation();
 
     if(loading){
-        return <Loading></Loading>
+        return setLoading(false)
     }
     
     if(user && user.uid){

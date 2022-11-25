@@ -49,7 +49,7 @@ const Login = () => {
           .then(res => res.json())
           .then(data => {
               // local storage is the easiest but not the best place to store jwt token
-              localStorage.setItem('photo-token', data.token);
+              localStorage.setItem('token', data.token);
               e.target.reset();
               navigate(from, { replace: true });
           });

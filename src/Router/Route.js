@@ -8,7 +8,7 @@ import SamsungProducts from "../Pages/SamsungProducts";
 import AppleProducts from "../Pages/AppleProducts";
 import Desboard from "../Pages/Desboard";
 import WaltonProducts from "../Pages/WaltonProducts.jsx";
-import Private from "../Router/Private"
+import PrivateRoute from "./PrivateRoute";
 
 export const route = createBrowserRouter([
     {
@@ -30,7 +30,7 @@ export const route = createBrowserRouter([
             },
             {
                 path:"/desboard",
-                element:<Private><Desboard></Desboard></Private>,
+                element:<PrivateRoute><Desboard></Desboard></PrivateRoute>,
             },
             {
                 path:"/samsung/:id",
