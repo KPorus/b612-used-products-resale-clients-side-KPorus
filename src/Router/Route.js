@@ -6,7 +6,9 @@ import SignUp from "../Pages/SignUp";
 import ErrorPage from "../component/ErrorPage"
 import SamsungProducts from "../Pages/SamsungProducts";
 import AppleProducts from "../Pages/AppleProducts";
+import Desboard from "../Pages/Desboard";
 import WaltonProducts from "../Pages/WaltonProducts.jsx";
+import Private from "../Router/Private"
 
 export const route = createBrowserRouter([
     {
@@ -25,6 +27,10 @@ export const route = createBrowserRouter([
             {
                 path:"/signUp",
                 element:<SignUp></SignUp>,
+            },
+            {
+                path:"/desboard",
+                element:<Private><Desboard></Desboard></Private>,
             },
             {
                 path:"/samsung/:id",
