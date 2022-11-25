@@ -5,6 +5,8 @@ import { AuthContext } from "../component/context/AuthProvider/AuthProvider"
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const SignUp= () => {
+  const [createdUserEmail, setCreatedUserEmail] = useState('')
+  const [isSeller, setisSeller] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
@@ -46,9 +48,10 @@ const SignUp= () => {
         })
           .then((res) => res.json())
           .then((data) => {
+            toast.success('Sign up Successfully.')
+            saveUser(name,email,isSeller);
             console.log(data);
-            // local storage is the easiest but not the best place to store jwt token
-            localStorage.setItem("photo-token", data.token);
+            localStorage.setItem("token", data.token);
             navigate(from, { replace: true });
           });
         e.target.reset();
@@ -58,6 +61,23 @@ const SignUp= () => {
         setErrors({ ...errors, general: error.message });
       });
   };
+
+
+  const saveUser = (name, email, isSeller) =>{
+    const user ={name, email, role:isSeller};
+    fetch('http://localhost:5000/users', {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(user)
+    })
+    .then(res => res.json())
+    .then(data =>{
+        setCreatedUserEmail(email);
+    })
+}
+
 
   const handleEmailChange = (e) => {
     const email = e.target.value;
@@ -95,6 +115,17 @@ const SignUp= () => {
   let check = (e) => {
     setAccepted(e.target.checked);
   };
+  let Sellercheck = (e) => {
+   let account =  e.target.checked;
+   console.log(account);
+   if(account)
+   {
+    setisSeller("Seller");
+   }
+
+  };
+
+  console.log(isSeller);
 
   document.title = "Sign Up"
   return (
@@ -147,6 +178,12 @@ const SignUp= () => {
                 <Link to='/login'>Already have a account!! Login</Link>
               </small>
               <div className='flex text-xl'>
+                <input type='checkbox' onClick={Sellercheck} />
+                <label className='label' value="seller">
+                  <span className='label-text'>
+                    SEllER ACCOUNT
+                  </span>
+                </label>
                 <input type='checkbox' onClick={check} required />
                 <label className='label'>
                   <span className='label-text'>
