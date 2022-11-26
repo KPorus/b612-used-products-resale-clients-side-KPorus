@@ -1,37 +1,40 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../component/context/AuthProvider/AuthProvider";
 
 const AddProduct = () => {
   const { user } = useContext(AuthContext);
+  const [brandName, setbrandName] = useState("");
 
   const imageHostKey = "352df8fe2fc9dcd8f6c608a683804722";
+
 
   let addProduct = (e) => {
     e.preventDefault();
     let form = e.target;
     let sellerName = form.name.value;
     let ProductName = form.ProductName.value;
-    let brandName = form.brandName.value;
     let email = form.email.value;
     let newPrice = form.price.value;
     let originalPrice = form.OriginalPrice.value;
     let details = form.details.value;
-    let img = e.target.image.files
-
+    let img = e.target.image.files;
+    let brand = document.querySelector("#brand").value;
+    console.log(brand);
+    setbrandName(brand);
 
     const image = img[0];
     console.log(image);
     const formData = new FormData();
-    formData.append('image', image);
-    const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`
+    formData.append("image", image);
+    const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
     fetch(url, {
-        method: 'POST',
-        body: formData
+      method: "POST",
+      body: formData,
     })
-    .then(res => res.json())
-    .then(imgData => {
-      if(imgData.success){
+      .then((res) => res.json())
+      .then((imgData) => {
+        if (imgData.success) {
           console.log(imgData.data.url);
           let userProduct = {
             sellerName,
@@ -42,7 +45,7 @@ const AddProduct = () => {
             newPrice,
             originalPrice,
             details,
-            photo:imgData.data.url
+            photo: imgData.data.url,
           };
 
           // save doctor information to the database
@@ -59,16 +62,16 @@ const AddProduct = () => {
               console.log(data);
               toast.success("Product has beed added");
             });
-      }
-  })
-    
-   
+        }
+      });
   };
 
   document.title = "Add product";
   return (
     <div className='container mx-auto'>
-      <h1 className='uppercase font-semibold text-2xl border-b-8 text-center'>Add Your product</h1>
+      <h1 className='uppercase font-semibold text-2xl border-b-8 text-center'>
+        Add Your product
+      </h1>
       <section className='p-6 dark:bg-gray-800 dark:text-gray-50 m-6'>
         <form
           onSubmit={addProduct}
@@ -91,6 +94,7 @@ const AddProduct = () => {
                   id='name'
                   name='name'
                   type='text'
+                  required
                   placeholder='seller name'
                   className='w-full input input-bordered rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900'
                 />
@@ -103,6 +107,7 @@ const AddProduct = () => {
                   id='img'
                   name='image'
                   type='file'
+                  required
                   placeholder='Product name'
                   className='w-full input input-bordered rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900'
                 />
@@ -115,21 +120,26 @@ const AddProduct = () => {
                   id='ProductName'
                   name='ProductName'
                   type='text'
+                  required
                   placeholder='Product name'
                   className='w-full input input-bordered rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900'
                 />
               </div>
               <div className='col-span-full sm:col-span-3'>
-                <label htmlFor='brandName' className='text-sm'>
+                <label htmlFor='brand' className='text-sm'>
                   Brand name
                 </label>
-                <input
-                  id='brandName'
-                  name='brandName'
-                  type='text'
-                  placeholder='Brand name'
-                  className='w-full input input-bordered rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900'
-                />
+                <select
+                  id='brand'
+                  className='select select-bordered w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900'
+                  required>
+                  <option disabled selected>
+                    Select a Brand Name
+                  </option>
+                  <option>samsung</option>
+                  <option>apple</option>
+                  <option>walton</option>
+                </select>
               </div>
               <div className='col-span-full sm:col-span-3'>
                 <label htmlFor='email' className='text-sm'>
@@ -153,6 +163,7 @@ const AddProduct = () => {
                   id='details'
                   name='details'
                   type='text'
+                  required
                   placeholder='Please Explain your Product'
                   className='w-full input input-bordered  rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900'
                 />
@@ -165,6 +176,7 @@ const AddProduct = () => {
                   id='price'
                   name='price'
                   type='text'
+                  required
                   placeholder='Enter your Price'
                   className='w-full input input-bordered rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900'
                 />
@@ -177,6 +189,7 @@ const AddProduct = () => {
                   id='Original Price'
                   name='OriginalPrice'
                   type='text'
+                  required
                   placeholder='Please enter original price'
                   className='w-full input input-bordered rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900'
                 />
