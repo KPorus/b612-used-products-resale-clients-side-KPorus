@@ -49,7 +49,7 @@ export const route = createBrowserRouter([
             },
             {
                 path:"/samsung/:id",
-                element:<SamsungProducts></SamsungProducts>,
+                element:<PrivateRoute><SamsungProducts></SamsungProducts></PrivateRoute>,
                 loader:async ({params})=>
                 {
                     return fetch(` http://localhost:5000/samsung/${params.id}`)
@@ -57,7 +57,7 @@ export const route = createBrowserRouter([
             },
             {
                 path:"/apple/:id",
-                element:<AppleProducts></AppleProducts>,
+                element:<PrivateRoute><AppleProducts></AppleProducts></PrivateRoute>,
                 loader:async ({params})=>
                 {
                     return fetch(` http://localhost:5000/apple/${params.id}`)
@@ -65,7 +65,7 @@ export const route = createBrowserRouter([
             },
             {
                 path:"/walton/:id",
-                element:<WaltonProducts></WaltonProducts>,
+                element:<PrivateRoute><WaltonProducts></WaltonProducts></PrivateRoute>,
                 loader:async ({params})=>
                 {
                     return fetch(` http://localhost:5000/walton/${params.id}`)

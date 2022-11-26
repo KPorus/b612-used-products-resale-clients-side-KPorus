@@ -9,6 +9,14 @@ const AddProduct = () => {
 
   const imageHostKey = "352df8fe2fc9dcd8f6c608a683804722";
 
+  let handle = ()=>
+  {
+   
+    let brand = document.querySelector("#brand").value;
+    console.log(brand);
+    setbrandName(brand);
+  }
+
 
   let addProduct = (e) => {
     e.preventDefault();
@@ -20,9 +28,6 @@ const AddProduct = () => {
     let originalPrice = form.OriginalPrice.value;
     let details = form.details.value;
     let img = e.target.image.files;
-    let brand = document.querySelector("#brand").value;
-    console.log(brand);
-    setbrandName(brand);
 
     const image = img[0];
     console.log(image);
@@ -62,6 +67,7 @@ const AddProduct = () => {
             .then((data) => {
               console.log(data);
               toast.success("Product has beed added");
+              setbrandName('');
             });
         }
       });
@@ -132,6 +138,7 @@ const AddProduct = () => {
                 </label>
                 <select
                   id='brand'
+                  onChange={handle}
                   className='select select-bordered w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900'
                   required>
                   <option disabled selected>
