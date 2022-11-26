@@ -24,6 +24,7 @@ const Orders = () => {
   }
 
   console.log(userOrder);
+  document.title="Placed Orders"
   return (
     <div className='container mx-auto'>
       <h1 className='text-4xl uppercase font-bold text-center border-b-8 m-2'>

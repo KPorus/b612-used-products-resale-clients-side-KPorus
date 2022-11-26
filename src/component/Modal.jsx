@@ -14,6 +14,7 @@ const Modal = ({ bookingData, setbookingData, refetch }) => {
     const form = event.target;
     const name = form.name.value;
     const email = form.email.value;
+    const sellerEmail = form.sellerEmail.value;
     const phone = form.phone.value;
     const price = form.price.value;
     const productName = form.productName.value;
@@ -25,7 +26,9 @@ const Modal = ({ bookingData, setbookingData, refetch }) => {
       price,
       productName,
       brand,
+      sellerEmail
     };
+    console.log(purchase);
     fetch("http://localhost:5000/orders", {
       method: "POST",
       headers: {
@@ -40,10 +43,10 @@ const Modal = ({ bookingData, setbookingData, refetch }) => {
           setbookingData(null);
           // toast.success("Booking confirmed");
           Swal.fire({
-            title:'Success',
-            text:"Booking Confirm. Buyer will contact you",
-            icon:'success'
-          })
+            title: "Success",
+            text: "Booking Confirm. Buyer will contact you",
+            icon: "success",
+          });
           refetch();
         } else {
           toast.error(data.message);
@@ -90,6 +93,16 @@ const Modal = ({ bookingData, setbookingData, refetch }) => {
               name='email'
               type='email'
               defaultValue={user?.email}
+              disabled
+              placeholder='Email Address'
+              className='input w-full input-bordered'
+            />
+            <label htmlFor='selleremail' className="text-sm ml-2 font-medium">Seller Email:</label>
+            <input
+              id='selleremail'
+              name='sellerEmail'
+              type='email'
+              defaultValue={bookingData.email}
               disabled
               placeholder='Email Address'
               className='input w-full input-bordered'

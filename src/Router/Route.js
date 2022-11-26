@@ -12,6 +12,7 @@ import PrivateRoute from "./PrivateRoute";
 import AddProduct from "../Pages/AddProduct";
 import YourProduct from "../Pages/YourProduct";
 import Orders from "../Pages/Orders";
+import PurchaseOrder from "../Pages/PurchaseOrder";
 
 export const route = createBrowserRouter([
     {
@@ -46,6 +47,10 @@ export const route = createBrowserRouter([
             {
                 path:"/youProduct",
                 element:<PrivateRoute><YourProduct></YourProduct></PrivateRoute>,
+            },
+            {
+                path:"/purchaseOrder",
+                element:<PrivateRoute><PurchaseOrder></PurchaseOrder></PrivateRoute>,
             },
             {
                 path:"/samsung/:id",

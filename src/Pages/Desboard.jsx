@@ -20,12 +20,13 @@ const Desboard = () => {
                 <div className="drawer-side">
                     <label htmlFor="desboard" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 bg-base-100 text-base-content">
-                        <li><Link to="/order" className='font-bold uppercase'>Order</Link></li>
+                        <li><Link to="/order" className='font-bold uppercase'>Your Placed orders</Link></li>
                         {
                             isSeller &&
                            <>
                             <li><Link to="/addProduct" className='font-bold uppercase'>Add product</Link></li>
                             <li><Link to="/youProduct" className='font-bold uppercase'>your product</Link></li>
+                            <li><Link to="/purchaseOrder" className='font-bold uppercase'>Booked Order</Link></li>
                            </>
                         }
                     </ul>
