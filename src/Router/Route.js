@@ -16,6 +16,7 @@ import PurchaseOrder from "../Pages/PurchaseOrder";
 import AllProduct from "../Pages/AllProduct";
 import AllSeller from "../Pages/AllSeller";
 import AllBuyers from "../Pages/AllBuyers";
+import Blog from "../Pages/Blog";
 
 export const route = createBrowserRouter([
     {
@@ -26,6 +27,10 @@ export const route = createBrowserRouter([
             {
                 path:"/",
                 element:<Home></Home>,
+            },
+            {
+                path:"/blog",
+                element:<Blog></Blog>,
             },
             {
                 path:"/login",

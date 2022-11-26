@@ -48,6 +48,11 @@ const Navber = () => {
               </Link>
             </li>
             <li>
+              <Link to='/blog' className='font-bold uppercase'>
+                Blog
+              </Link>
+            </li>
+            <li>
               {user ? (
                 <button className='uppercase font-bold' onClick={handleSignOut}>
                   LogOut
@@ -62,7 +67,7 @@ const Navber = () => {
         </div>
         <Link to='/' className='normal-case text-xl'>
           <div className='flex items-center p-2'>
-            <img src='../mobile.svg'></img>
+            <img src='../mobile.svg' alt="logo"></img>
             <span className='font-bold uppercase hidden md:block'>Buy&Sell</span>
           </div>
         </Link>
@@ -79,6 +84,11 @@ const Navber = () => {
               Desboard
             </Link>
           </li>
+          <li>
+              <Link to='/blog' className='font-bold uppercase'>
+                Blog
+              </Link>
+            </li>
           <li>
             {user ? (
               <button className='uppercase font-bold' onClick={handleSignOut}>
