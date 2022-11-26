@@ -1,11 +1,14 @@
 import React from 'react';
+import Banner from '../component/Banner';
+import Sales from '../component/Sales';
 import HomeCatagorys from './HomeCatagorys';
 
 const Home = () => {
     document.title = 'Home'
     return (
         <div>
-            <h1 className='container mx-auto text-4xl p-4'>Home Part</h1>
+            <Banner></Banner>
+            <Sales></Sales>
             <HomeCatagorys></HomeCatagorys>
         </div>
     );
