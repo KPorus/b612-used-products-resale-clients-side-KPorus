@@ -7,6 +7,8 @@ import { GoogleAuthProvider } from "firebase/auth";
 
 const Login = () => {
   const { login,googleLogin, setLoading, setUser, forgetPassword } = useContext(AuthContext);
+  const [isSeller, setisSeller] = useState("Buyer");
+  const [createdUserEmail, setCreatedUserEmail] = useState('')
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -120,6 +122,7 @@ const Login = () => {
           .then(res => res.json())
           .then(data => {
               console.log(data);
+              saveUser(user.displayName,user.email,isSeller);
               // local storage is the easiest but not the best place to store jwt token
               localStorage.setItem('photo-token', data.token);
               navigate(from, { replace: true });
@@ -130,6 +133,22 @@ const Login = () => {
         toast.error("login failled")
       });
   }
+
+
+  const saveUser = (name, email, isSeller) =>{
+    const user ={name, email, role:isSeller};
+    fetch('http://localhost:5000/users', {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(user)
+    })
+    .then(res => res.json())
+    .then(data =>{
+        setCreatedUserEmail(email);
+    })
+}
 
   let resetPass = ()=>
   {

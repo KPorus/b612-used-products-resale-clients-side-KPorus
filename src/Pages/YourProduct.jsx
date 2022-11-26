@@ -27,6 +27,7 @@ const YourProduct = () => {
   }
 
   console.log(product);
+  document.title = "Your Product"
   return (
     <div className='container mx-auto '>
       <h1 className='upperCase text-slate-800 font-bold text-4xl text-center'>

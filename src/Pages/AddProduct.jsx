@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../component/context/AuthProvider/AuthProvider";
 
 const AddProduct = () => {
@@ -198,6 +199,13 @@ const AddProduct = () => {
             </div>
           </fieldset>
         </form>
+        <div className="flex justify-center m-10">
+        <Link
+          to='/desboard'
+          className='px-8 py-3 font-semibold rounded bg-cyan-200 text-gray-900'>
+          Back to desboard
+        </Link>
+      </div>
       </section>
     </div>
   );
