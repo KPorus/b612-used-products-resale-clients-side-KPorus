@@ -11,6 +11,7 @@ import WaltonProducts from "../Pages/WaltonProducts.jsx";
 import PrivateRoute from "./PrivateRoute";
 import AddProduct from "../Pages/AddProduct";
 import YourProduct from "../Pages/YourProduct";
+import Orders from "../Pages/Orders";
 
 export const route = createBrowserRouter([
     {
@@ -33,6 +34,10 @@ export const route = createBrowserRouter([
             {
                 path:"/desboard",
                 element:<PrivateRoute><Desboard></Desboard></PrivateRoute>,
+            },
+            {
+                path:"/order",
+                element:<PrivateRoute><Orders></Orders></PrivateRoute>,
             },
             {
                 path:"/addProduct",
