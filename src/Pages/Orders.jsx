@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../component/context/AuthProvider/AuthProvider";
 import Loading from "../component/Loading";
 import OrderListCard from "./OrderListCard";
@@ -37,6 +38,13 @@ const Orders = () => {
             items={items}
             refetch={refetch}></OrderListCard>
         ))}
+      </div>
+      <div className="flex justify-center m-10">
+        <Link
+          to='/desboard'
+          className='px-8 py-3 font-semibold rounded bg-cyan-200 text-gray-900'>
+          Back to desboard
+        </Link>
       </div>
     </div>
   );

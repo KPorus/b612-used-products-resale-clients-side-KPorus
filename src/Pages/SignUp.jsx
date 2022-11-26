@@ -3,10 +3,13 @@ import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { AuthContext } from "../component/context/AuthProvider/AuthProvider"
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { GoogleAuthProvider } from "firebase/auth";
+import { FcGoogle } from "react-icons/fc";
 
 const SignUp= () => {
+  const {googleLogin} = useContext(AuthContext);
+  const [isSeller, setisSeller] = useState("Buyer");
   const [createdUserEmail, setCreatedUserEmail] = useState('')
-  const [isSeller, setisSeller] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
@@ -22,7 +25,6 @@ const SignUp= () => {
     general: "",
   });
 
-  const [accepted, setAccepted] = useState(false);
   const { createUser, setLoading } = useContext(AuthContext);
 
   let handleLogin = (e) => {
@@ -112,15 +114,49 @@ const SignUp= () => {
     }
   };
 
-  let check = (e) => {
-    setAccepted(e.target.checked);
-  };
+
+
+  let googleProvider = new GoogleAuthProvider();
+  let handleGoogleLogin = () => {
+    googleLogin(googleProvider)
+      .then((result) => {
+        const user = result.user;
+        setLoading(true)
+        console.log(user)
+        toast.success("Login successfull!")
+
+        const currentUser = {
+          email: user.email
+        }
+        console.log(currentUser);
+        fetch(' https://b6a11-service-review-server-side-kp-orus-steel.vercel.app/jwt', {
+          method: 'POST',
+          headers: {
+              'content-type': 'application/json'
+          },
+          body: JSON.stringify(currentUser)
+      })
+          .then(res => res.json())
+          .then(data => {
+              console.log(data);
+              saveUser(user.displayName,user.email,isSeller);
+              localStorage.setItem('photo-token', data.token);
+              navigate(from, { replace: true });
+          });
+        // ...
+      }).catch((error) => {
+        console.log(error);
+        toast.error("login failled")
+      });
+  }
+
   let Sellercheck = (e) => {
    let account =  e.target.checked;
    console.log(account);
    if(account)
    {
     setisSeller("Seller");
+    return
    }
 
   };
@@ -181,23 +217,18 @@ const SignUp= () => {
                 <input type='checkbox' onClick={Sellercheck} />
                 <label className='label' value="seller">
                   <span className='label-text'>
-                    SEllER ACCOUNT
-                  </span>
-                </label>
-                <input type='checkbox' onClick={check} required />
-                <label className='label'>
-                  <span className='label-text'>
-                    Accept terms and conditions
+                    SELLER ACCOUNT
                   </span>
                 </label>
               </div>
             </div>
             {errors.general && <p className='text-red-600'>{errors.general}</p>}
             <div className='form-control mt-6'>
-              <button className='btn btn-primary bg-[#003566] text-white' disabled={!accepted}>
+              <button className='btn btn-primary bg-[#003566] text-white'>
                 Submit
               </button>
             </div>
+            <button className="btn btn-ghost w-1/2 mx-auto mt-2" onClick={handleGoogleLogin}><FcGoogle className="text-2xl mr-2"></FcGoogle>Google Login</button>
           </div>
         </form>
       </div>

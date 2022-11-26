@@ -63,7 +63,7 @@ const Navber = () => {
         <Link to='/' className='normal-case text-xl'>
           <div className='flex items-center p-2'>
             <img src='../mobile.svg'></img>
-            <span className='font-bold uppercase'>Buy&Sell</span>
+            <span className='font-bold uppercase hidden md:block'>Buy&Sell</span>
           </div>
         </Link>
       </div>

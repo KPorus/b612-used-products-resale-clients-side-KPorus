@@ -202,7 +202,9 @@ const AddProduct = () => {
                   className='w-full input input-bordered rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900'
                 />
               </div>
-              <input className='btn btn-primary mt-6' type='submit'></input>
+              <div className="mt-6">
+              <button className='btn btn-primary sm:text-xl' type='submit'>Submit</button>
+              </div>
             </div>
           </fieldset>
         </form>
