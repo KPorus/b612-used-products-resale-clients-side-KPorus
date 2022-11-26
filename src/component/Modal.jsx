@@ -1,10 +1,13 @@
 import { AuthContext } from "../component/context/AuthProvider/AuthProvider";
 import React, { useContext } from "react";
 import toast from "react-hot-toast";
+import Swal from "sweetalert2";
+import { success } from "daisyui/src/colors";
 
-const Modal = ({bookingData,setbookingData,refetch}) => {
-    console.log(bookingData);
-    const { user } = useContext(AuthContext);
+const Modal = ({ bookingData, setbookingData, refetch }) => {
+  const Swal = require("sweetalert2");
+  console.log(bookingData);
+  const { user } = useContext(AuthContext);
 
   const handleBooking = (event) => {
     event.preventDefault();
@@ -14,12 +17,14 @@ const Modal = ({bookingData,setbookingData,refetch}) => {
     const phone = form.phone.value;
     const price = form.price.value;
     const productName = form.productName.value;
+    const brand = form.brandName.value;
     const purchase = {
       name,
       email,
       phone,
       price,
-      productName
+      productName,
+      brand,
     };
     fetch("http://localhost:5000/orders", {
       method: "POST",
@@ -32,8 +37,13 @@ const Modal = ({bookingData,setbookingData,refetch}) => {
       .then((data) => {
         console.log(data);
         if (data.acknowledged) {
-            setbookingData(null);
-          toast.success("Booking confirmed");
+          setbookingData(null);
+          // toast.success("Booking confirmed");
+          Swal.fire({
+            title:'Success',
+            text:"Booking Confirm. Buyer will contact you",
+            icon:'success'
+          })
           refetch();
         } else {
           toast.error(data.message);
@@ -76,14 +86,14 @@ const Modal = ({bookingData,setbookingData,refetch}) => {
               disabled
               className='input w-full input-bordered'
             />
-              <input
-                name='email'
-                type='email'
-                defaultValue={user?.email}
-                disabled
-                placeholder='Email Address'
-                className='input w-full input-bordered'
-              />
+            <input
+              name='email'
+              type='email'
+              defaultValue={user?.email}
+              disabled
+              placeholder='Email Address'
+              className='input w-full input-bordered'
+            />
             <input
               name='name'
               type='text'

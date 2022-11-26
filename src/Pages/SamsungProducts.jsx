@@ -22,10 +22,6 @@ const SamsungProducts = () => {
   if (isLoading) {
     return <Loading></Loading>;
   }
-
-  // let samsung = useLoaderData();
-  // let data = samsung[0];
-  // let { product,_id } = data;
   console.log(product);
   return (
     <div className='container mx-auto'>

@@ -1,6 +1,6 @@
 import React from "react";
 
-const AppleProductCard = ({items}) => {
+const AppleProductCard = ({items,setbookingData}) => {
     let { ProductName,photo,sellerName, details, newPrice, originalPrice, date } = items;
     return (
       <div className='flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-md dark:bg-gray-900 dark:text-gray-100'>
@@ -25,7 +25,7 @@ const AppleProductCard = ({items}) => {
               <strong>Original Price: ${originalPrice}</strong>
           </div>
         </div>
-        <button className="btn btn-primary font-bold uppercase btn-info">Purchase</button>
+        <label htmlFor="book"className="btn btn-primary font-bold uppercase btn-info" onClick={()=>setbookingData(items)}>Purchase</label>
       </div>
     );
 };
