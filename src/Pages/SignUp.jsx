@@ -9,6 +9,7 @@ import { FcGoogle } from "react-icons/fc";
 const SignUp= () => {
   const {googleLogin} = useContext(AuthContext);
   const [isSeller, setisSeller] = useState("Buyer");
+  const [setvalue, setsetvalue] = useState(false);
   const [createdUserEmail, setCreatedUserEmail] = useState('')
   const location = useLocation();
   const navigate = useNavigate();
@@ -153,12 +154,12 @@ const SignUp= () => {
   let Sellercheck = (e) => {
    let account =  e.target.checked;
    console.log(account);
-   if(account)
+   setisSeller("Seller");
+   if(account === false)
    {
-    setisSeller("Seller");
+    setisSeller("Buyer")
     return
-   }
-
+  }
   };
 
   console.log(isSeller);
