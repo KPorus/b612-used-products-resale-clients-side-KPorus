@@ -15,6 +15,8 @@ const Navber = () => {
         console.error(error);
       });
   };
+  let showdate = new Date();
+  let date = showdate.toDateString();
   return (
     <div className='navbar bg-base-100 container mx-auto'>
       <div className='navbar-start'>
@@ -63,6 +65,7 @@ const Navber = () => {
                 </Link>
               )}
             </li>
+            <li>{date}</li>
           </ul>
         </div>
         <Link to='/' className='normal-case text-xl'>
@@ -100,6 +103,7 @@ const Navber = () => {
               </Link>
             )}
           </li>
+          <li><h1 className="btn text-white w-28 h-20">Todays Date:{date}</h1></li>
         </ul>
       </div>
       <div className='navbar-end'>

@@ -17,6 +17,8 @@ const AddProduct = () => {
     setbrandName(brand);
   }
 
+  let showdate = new Date();
+  let date = showdate.toDateString();
 
   let addProduct = (e) => {
     e.preventDefault();
@@ -28,6 +30,7 @@ const AddProduct = () => {
     let originalPrice = form.OriginalPrice.value;
     let details = form.details.value;
     let img = e.target.image.files;
+    let location = form.location.value
 
     const image = img[0];
     console.log(image);
@@ -51,10 +54,11 @@ const AddProduct = () => {
             newPrice,
             originalPrice,
             details,
+            currentDate:date,
+            location,
             photo: imgData.data.url,
           };
 
-          // save doctor information to the database
           console.log(userProduct);
           fetch(`http://localhost:5000/userProduct`, {
             method: "POST",
@@ -199,6 +203,19 @@ const AddProduct = () => {
                   type='text'
                   required
                   placeholder='Please enter original price'
+                  className='w-full input input-bordered rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900'
+                />
+              </div>
+              <div className='col-span-full sm:col-span-2'>
+                <label htmlFor='location' className='text-sm'>
+                  Location
+                </label>
+                <input
+                  id='location'
+                  name='location'
+                  type='text'
+                  required
+                  placeholder='Please enter your loaction'
                   className='w-full input input-bordered rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900'
                 />
               </div>

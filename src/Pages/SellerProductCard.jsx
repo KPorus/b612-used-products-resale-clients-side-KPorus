@@ -2,7 +2,7 @@ import React from "react";
 import toast from "react-hot-toast";
 
 const SellerProductCard = ({ items, refetch }) => {
-  let { ProductName, _id, photo, details, newPrice, originalPrice, date } =
+  let {location,currentDate,ProductName, _id, photo, details, newPrice, originalPrice, date } =
     items;
 
   console.log(items);
@@ -37,6 +37,8 @@ const SellerProductCard = ({ items, refetch }) => {
         />
         <h2 className='mb-1 text-xl font-semibold'>{ProductName}</h2>
         <p className='text-sm dark:text-gray-400'>{details}</p>
+        <p className='text-sm dark:text-gray-400'>Post on: {currentDate}</p>
+        <p className='text-sm dark:text-gray-400'>Location: {location}</p>
       </div>
       <div className='flex flex-wrap justify-between'>
         <div className='flex space-x-2 text-sm dark:text-gray-400'>
