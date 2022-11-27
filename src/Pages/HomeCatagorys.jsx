@@ -37,19 +37,19 @@ const HomeCatagorys = () => {
         <div className='relative catagory'>
           {" "}
           <img src='https://i.ibb.co/1MyxJdH/3726.webp' alt='' />
-          <div className='z-10 absolute left-[30%] top-[40%] flex items-center justify-between p-10 sm:py-8 dark:bg-gray-900 dark:text-gray-100'>
+          <div className='z-10 absolute left-[30%] top-[40%] flex items-center justify-between p-10 sm:py-8 bg-gray-900 text-gray-100'>
             <Link to={`/samsung/${samsungId[0]}`}>Samsung</Link>
           </div>
         </div>
         <div className='relative catagory'>
           <img src='https://i.ibb.co/RyQNz5X/298426-450381.png' alt='' />
-          <div className='z-10 absolute left-[30%] top-[40%] flex items-center justify-between p-10  sm:py-8 dark:bg-gray-900 dark:text-gray-100'>
+          <div className='z-10 absolute left-[30%] top-[40%] flex items-center justify-between p-10  sm:py-8 bg-gray-900 text-gray-100'>
             <Link to={`/apple/${appleId[0]}`}>Iphone</Link>
           </div>
         </div>
        <div className='relative catagory'>
        <img src='https://i.ibb.co/JtxHK0J/Walton-Primo-S7-Pro.jpg' alt='' />
-        <div className='z-10 absolute left-[30%] top-[40%] flex items-center justify-between p-10 sm:py-8  dark:bg-gray-900 dark:text-gray-100'>
+        <div className='z-10 absolute left-[30%] top-[40%] flex items-center justify-between p-10 sm:py-8  bg-gray-900 text-gray-100'>
           <Link to={`/walton/${waltonId[0]}`}>Walton</Link>
         </div>
        </div>

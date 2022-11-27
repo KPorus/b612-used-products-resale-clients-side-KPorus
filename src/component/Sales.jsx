@@ -1,10 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const Sales = () => {
     return (
         <div className='container mx-auto mb-16'>
-            <div className="p-6 py-12 dark:bg-[#085594]">
+            <div className="p-6 py-12 bg-[#085594]">
                 <div className="container mx-auto text-amber-100">
                     <div className="flex flex-col lg:flex-row items-center justify-evenly">
                         <h2 className="text-center text-6xl tracking-tighter font-bold">Up to
