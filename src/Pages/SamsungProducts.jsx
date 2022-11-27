@@ -22,7 +22,7 @@ const SamsungProducts = () => {
   if (isLoading) {
     return <Loading></Loading>;
   }
-  console.log(product);
+ 
   return (
     <div className='container mx-auto'>
       <h1 className='font-bold text-4xl text-center uppercase text-slate-800'>

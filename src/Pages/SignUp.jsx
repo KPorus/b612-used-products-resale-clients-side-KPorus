@@ -9,7 +9,6 @@ import { FcGoogle } from "react-icons/fc";
 const SignUp= () => {
   const {googleLogin} = useContext(AuthContext);
   const [isSeller, setisSeller] = useState("Buyer");
-  const [setvalue, setsetvalue] = useState(false);
   const [createdUserEmail, setCreatedUserEmail] = useState('')
   const location = useLocation();
   const navigate = useNavigate();
@@ -53,7 +52,6 @@ const SignUp= () => {
           .then((data) => {
             toast.success('Sign up Successfully.')
             saveUser(name,email,isSeller);
-            console.log(data);
             localStorage.setItem("token", data.token);
             navigate(from, { replace: true });
           });
@@ -123,7 +121,6 @@ const SignUp= () => {
       .then((result) => {
         const user = result.user;
         setLoading(true)
-        console.log(user)
         toast.success("Login successfull!")
 
         const currentUser = {
@@ -139,7 +136,6 @@ const SignUp= () => {
       })
           .then(res => res.json())
           .then(data => {
-              console.log(data);
               saveUser(user.displayName,user.email,isSeller);
               localStorage.setItem('token', data.token);
               navigate(from, { replace: true });

@@ -1,8 +1,6 @@
 import { AuthContext } from "../component/context/AuthProvider/AuthProvider";
 import React, { useContext } from "react";
 import toast from "react-hot-toast";
-import Swal from "sweetalert2";
-import { success } from "daisyui/src/colors";
 
 const Modal = ({ bookingData, setbookingData, refetch }) => {
   const Swal = require("sweetalert2");
@@ -123,7 +121,7 @@ const Modal = ({ bookingData, setbookingData, refetch }) => {
             />
             <br />
             <input
-              className='btn btn-primary text-white bg-[#003566]  text-white font-medium w-full'
+              className='btn btn-primary text-white bg-[#003566] font-medium w-full'
               type='submit'
               value='Submit'
             />

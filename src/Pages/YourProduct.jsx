@@ -26,7 +26,6 @@ const YourProduct = () => {
     return <Loading></Loading>;
   }
 
-  console.log(product);
   document.title = "Your Product"
   return (
     <div className='container mx-auto '>
@@ -44,7 +43,7 @@ const YourProduct = () => {
       <div className="flex justify-center m-10">
         <Link
           to='/desboard'
-          className='px-8 py-3 font-semibold rounded bg-[#003566] text-white text-gray-900'>
+          className='px-8 py-3 font-semibold rounded bg-[#003566] text-white'>
           Back to desboard
         </Link>
       </div>
