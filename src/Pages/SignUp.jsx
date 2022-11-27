@@ -130,7 +130,7 @@ const SignUp= () => {
           email: user.email
         }
         console.log(currentUser);
-        fetch(' https://b6a11-service-review-server-side-kp-orus-steel.vercel.app/jwt', {
+        fetch(' http://localhost:5000/jwt', {
           method: 'POST',
           headers: {
               'content-type': 'application/json'
@@ -141,7 +141,7 @@ const SignUp= () => {
           .then(data => {
               console.log(data);
               saveUser(user.displayName,user.email,isSeller);
-              localStorage.setItem('photo-token', data.token);
+              localStorage.setItem('token', data.token);
               navigate(from, { replace: true });
           });
         // ...
