@@ -29,7 +29,7 @@ const HomeCatagorys = () => {
   let waltonId = walton.map((id) => id._id);
   console.log(waltonId[0]);
   return (
-    <div>
+    <div className="mb-12">
       <h1 className='font-bold text-3xl text-center uppercase font-serif text-slate-800'>
         <span className="text-[#204d68]">Catagory </span>of Sales
       </h1>

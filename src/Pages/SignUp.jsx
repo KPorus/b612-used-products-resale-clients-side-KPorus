@@ -212,7 +212,7 @@ const SignUp= () => {
 
               <small>
                 {" "}
-                <Link to='/login'>Already have a account!! Login</Link>
+                <Link to='/login'>Already have a account!! <span className="font-bold text-[#085594]">Login</span></Link>
               </small>
               <div className='flex text-xl'>
                 <input type='checkbox' onClick={Sellercheck} />
@@ -226,7 +226,7 @@ const SignUp= () => {
             {errors.general && <p className='text-red-600'>{errors.general}</p>}
             <div className='form-control mt-6'>
               <button className='btn btn-primary bg-[#003566] text-white'>
-                Submit
+                Sign up
               </button>
             </div>
             <button className="btn btn-ghost w-1/2 mx-auto mt-2" onClick={handleGoogleLogin}><FcGoogle className="text-2xl mr-2"></FcGoogle>Google Login</button>

@@ -38,7 +38,7 @@ const OrderListCard = ({ items, refetch }) => {
           </div>
         </div>
         <button
-          className='btn btn-primary font-bold uppercase btn-info'
+          className='btn text-white bg-[#003566] font-bold uppercase btn-info'
           onClick={() => handleDelete(_id)}>
           Delete
         </button>

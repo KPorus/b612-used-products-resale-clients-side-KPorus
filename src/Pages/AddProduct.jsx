@@ -225,7 +225,7 @@ const AddProduct = () => {
                 />
               </div>
               <div className='mt-6'>
-                <button className='btn btn-primary sm:text-xl' type='submit'>
+                <button className='btn btn-primary bg-[#003566] text-white sm:text-xl' type='submit'>
                   Submit
                 </button>
               </div>

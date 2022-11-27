@@ -123,7 +123,7 @@ const Modal = ({ bookingData, setbookingData, refetch }) => {
             />
             <br />
             <input
-              className='btn btn-primary text-white font-medium w-full'
+              className='btn btn-primary text-white bg-[#003566]  text-white font-medium w-full'
               type='submit'
               value='Submit'
             />

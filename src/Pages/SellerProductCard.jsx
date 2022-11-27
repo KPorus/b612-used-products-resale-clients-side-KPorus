@@ -61,7 +61,7 @@ const SellerProductCard = ({ items, refetch }) => {
         </div>
       </div>
       <button
-        className='btn btn-primary font-bold uppercase btn-info'
+        className='btn btn-primary bg-[#003566] text-white font-bold uppercase btn-info'
         onClick={() => handleDelete(_id)}>
         Delete
       </button>
