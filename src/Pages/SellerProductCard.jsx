@@ -2,8 +2,18 @@ import React from "react";
 import toast from "react-hot-toast";
 
 const SellerProductCard = ({ items, refetch }) => {
-  let {location,currentDate,ProductName, _id, photo, details, newPrice, originalPrice, date } =
-    items;
+  let {
+    brandName,
+    location,
+    currentDate,
+    ProductName,
+    _id,
+    photo,
+    details,
+    newPrice,
+    originalPrice,
+    date,
+  } = items;
 
   console.log(items);
   let handleDelete = (_id) => {
@@ -36,9 +46,13 @@ const SellerProductCard = ({ items, refetch }) => {
           className='object-cover w-full mb-4 h-60 sm:h-96 dark:bg-gray-500'
         />
         <h2 className='mb-1 text-xl font-semibold'>{ProductName}</h2>
-        <p className='text-sm dark:text-gray-400'>{details}</p>
-        <p className='text-sm dark:text-gray-400'>Post on: {currentDate}</p>
-        <p className='text-sm dark:text-gray-400'>Location: {location}</p>
+        <h2 className='mb-1 text-sm font-semibold'>{brandName}</h2>
+        <p className='text-lg dark:text-gray-400 mt-2 mb-2'>Details: {details}</p>
+        <strong>
+          {" "}
+          <p className='text-sm dark:text-gray-400'>Post on: {currentDate}</p>
+          <p className='text-sm dark:text-gray-400'>Location: {location}</p>
+        </strong>
       </div>
       <div className='flex flex-wrap justify-between'>
         <div className='flex space-x-2 text-sm dark:text-gray-400'>
@@ -52,7 +66,6 @@ const SellerProductCard = ({ items, refetch }) => {
         Delete
       </button>
     </div>
-    
   );
 };
 

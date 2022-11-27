@@ -9,16 +9,19 @@ const AddProduct = () => {
 
   const imageHostKey = "352df8fe2fc9dcd8f6c608a683804722";
 
-  let handle = ()=>
-  {
-   
+  let handle = () => {
     let brand = document.querySelector("#brand").value;
     console.log(brand);
     setbrandName(brand);
-  }
+  };
 
   let showdate = new Date();
   let date = showdate.toDateString();
+
+  function Reset() {
+    var dropDown = document.getElementById("brand");
+    dropDown.selectedIndex = 0;
+}
 
   let addProduct = (e) => {
     e.preventDefault();
@@ -30,7 +33,7 @@ const AddProduct = () => {
     let originalPrice = form.OriginalPrice.value;
     let details = form.details.value;
     let img = e.target.image.files;
-    let location = form.location.value
+    let location = form.location.value;
 
     const image = img[0];
     console.log(image);
@@ -54,7 +57,7 @@ const AddProduct = () => {
             newPrice,
             originalPrice,
             details,
-            currentDate:date,
+            currentDate: date,
             location,
             photo: imgData.data.url,
           };
@@ -71,7 +74,9 @@ const AddProduct = () => {
             .then((data) => {
               console.log(data);
               toast.success("Product has beed added");
-              setbrandName('');
+              e.target.reset()
+              Reset();
+              setbrandName("");
             });
         }
       });
@@ -142,10 +147,10 @@ const AddProduct = () => {
                 </label>
                 <select
                   id='brand'
+                  required
                   onChange={handle}
-                  className='select select-bordered w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900'
-                  required>
-                  <option disabled selected>
+                  className='select select-bordered w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900'>
+                  <option  selected>
                     Select a Brand Name
                   </option>
                   <option>samsung</option>
@@ -219,19 +224,21 @@ const AddProduct = () => {
                   className='w-full input input-bordered rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900'
                 />
               </div>
-              <div className="mt-6">
-              <button className='btn btn-primary sm:text-xl' type='submit'>Submit</button>
+              <div className='mt-6'>
+                <button className='btn btn-primary sm:text-xl' type='submit'>
+                  Submit
+                </button>
               </div>
             </div>
           </fieldset>
         </form>
-        <div className="flex justify-center m-10">
-        <Link
-          to='/desboard'
-          className='px-8 py-3 font-semibold rounded bg-cyan-200 text-gray-900'>
-          Back to desboard
-        </Link>
-      </div>
+        <div className='flex justify-center m-10'>
+          <Link
+            to='/desboard'
+            className='px-8 py-3 font-semibold rounded bg-cyan-200 text-gray-900'>
+            Back to desboard
+          </Link>
+        </div>
       </section>
     </div>
   );
