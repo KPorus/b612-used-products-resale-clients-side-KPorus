@@ -8,21 +8,21 @@ const HomeCatagorys = () => {
   const [walton, setwalton] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/samsung")
+    fetch("https://b612-used-products-resale-server-side-kp-orus.vercel.app/samsung")
       .then((res) => res.json())
       .then((data) => setsamsung(data));
   }, []);
   let samsungId = samsung.map((id) => id._id);
 
   useEffect(() => {
-    fetch("http://localhost:5000/apple")
+    fetch("https://b612-used-products-resale-server-side-kp-orus.vercel.app/apple")
       .then((res) => res.json())
       .then((data) => setapple(data));
   }, []);
   let appleId = apple.map((id) => id._id);
 
   useEffect(() => {
-    fetch("http://localhost:5000/walton")
+    fetch("https://b612-used-products-resale-server-side-kp-orus.vercel.app/walton")
       .then((res) => res.json())
       .then((data) => setwalton(data));
   }, []);

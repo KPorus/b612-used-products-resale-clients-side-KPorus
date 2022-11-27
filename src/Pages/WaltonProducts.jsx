@@ -12,7 +12,7 @@ const WaltonProducts = () => {
   } = useQuery({
     queryKey: ["userPuduct"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/userProduct/walton`);
+      const res = await fetch(`https://b612-used-products-resale-server-side-kp-orus.vercel.app/userProduct/walton`);
       const data = await res.json();
       return data;
     },

@@ -68,7 +68,7 @@ const SignUp= () => {
 
   const saveUser = (name, email, isSeller) =>{
     const user ={name, email, role:isSeller};
-    fetch('http://localhost:5000/users', {
+    fetch('https://b612-used-products-resale-server-side-kp-orus.vercel.app/users', {
         method: 'POST',
         headers: {
             'content-type': 'application/json'
@@ -130,7 +130,7 @@ const SignUp= () => {
           email: user.email
         }
         console.log(currentUser);
-        fetch(' http://localhost:5000/jwt', {
+        fetch(' https://b612-used-products-resale-server-side-kp-orus.vercel.app/jwt', {
           method: 'POST',
           headers: {
               'content-type': 'application/json'

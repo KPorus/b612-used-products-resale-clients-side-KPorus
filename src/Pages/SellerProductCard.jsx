@@ -17,7 +17,7 @@ const SellerProductCard = ({ items, refetch }) => {
 
   console.log(items);
   let handleDelete = (_id) => {
-    fetch(`http://localhost:5000/userProduct/${_id}`, {
+    fetch(`https://b612-used-products-resale-server-side-kp-orus.vercel.app/userProduct/${_id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("token")}`,

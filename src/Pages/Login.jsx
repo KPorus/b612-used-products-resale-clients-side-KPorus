@@ -39,7 +39,7 @@ const Login = () => {
         setLoading(true)
         setUser(user);
 
-        fetch(' http://localhost:5000/jwt', {
+        fetch(' https://b612-used-products-resale-server-side-kp-orus.vercel.app/jwt', {
           method: 'POST',
           headers: {
               'content-type': 'application/json'
@@ -110,7 +110,7 @@ const Login = () => {
           email: user.email
         }
         console.log(currentUser);
-        fetch(' http://localhost:5000/jwt', {
+        fetch(' https://b612-used-products-resale-server-side-kp-orus.vercel.app/jwt', {
           method: 'POST',
           headers: {
               'content-type': 'application/json'

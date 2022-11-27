@@ -22,13 +22,13 @@ const Banner = () => {
             {user?.email ? (
               <Link
                 to='/desboard'
-                className=' drop-shadow-2xl px-8 py-3 text-lg font-semibold rounded dark:bg-violet-400 dark:text-gray-900'>
+                className=' drop-shadow-2xl px-8 py-3 text-lg font-semibold rounded dark:bg-[#085594] dark:text-slate-200'>
                 Get started
               </Link>
             ) : (
               <Link
                 to='/signUp'
-                className=' drop-shadow-2xl px-8 py-3 text-lg font-semibold rounded dark:bg-violet-400 dark:text-gray-900'>
+                className=' drop-shadow-2xl px-8 py-3 text-lg font-semibold rounded dark:bg-[#085594] dark:text-slate-200'>
                 Get started
               </Link>
             )}

@@ -9,7 +9,7 @@ const UserInfo = () => {
   const { isLoading, data: userProfile = [] } = useQuery({
     queryKey: ["userProfile"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/user/${user?.email}`);
+      const res = await fetch(`https://b612-used-products-resale-server-side-kp-orus.vercel.app/user/${user?.email}`);
       const data = await res.json();
       return data;
     },
@@ -24,17 +24,17 @@ const UserInfo = () => {
       <h1 className='font-semibold text-2xl m-2'>User Info</h1>
       {userProfile.map((user) => (
         <>
-          <h1 className='font-bold text-xl m-2 bg-slate-800 text-slate-200 p-4'>Name: {user.name}</h1>
-          <h2 className='font-bold text-xl m-2 bg-slate-800 text-slate-200 p-4'>Email: {user.email}</h2>
+          <h1 className='font-bold text-xl m-2 dark:bg-[#085594] text-slate-200 p-4'>Name: {user.name}</h1>
+          <h2 className='font-bold text-xl m-2 dark:bg-[#085594] text-slate-200 p-4'>Email: {user.email}</h2>
             {
               user.role ==="Seller" &&
-              <p className='font-bold text-2xl m-2 bg-slate-800 text-slate-200 p-4'>
+              <p className='font-bold text-2xl m-2 dark:bg-[#085594] text-slate-200 p-4'>
                 Type of account: Seller
               </p>
             }
             {
               user.role !=="Seller" &&
-              <p className='font-bold text-2xl m-2 bg-slate-800 text-slate-200 p-4'>
+              <p className='font-bold text-2xl m-2 dark:bg-[#085594] text-slate-200 p-4'>
                 Type of account: Buyer
               </p>
             }

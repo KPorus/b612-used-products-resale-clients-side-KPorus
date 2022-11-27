@@ -3,12 +3,12 @@ import React from "react";
 const Blog = () => {
   document.title = "Blog";
   return (
-    <section className='dark:text-gray-600 mt-10 container mx-auto'>
+    <section className='dark:bg-[#085594] dark:text-slate-200 mt-10 container mx-auto'>
       <div className=' flex flex-col justify-center px-4 py-8 md:p-8'>
         <h2 className='text-2xl font-bold sm:text-4xl uppercase text-center'>
           Blog
         </h2>
-        <p className='mt-4 mb-8 dark:text-gray-600  text-center'>
+        <p className='mt-4 mb-8 dark:text-slate-200  text-center'>
           Here some answer of frequat question.
         </p>
         <div className='space-y-4'>
@@ -17,7 +17,7 @@ const Blog = () => {
               What are the different ways to manage a state in a React
               application?
             </summary>
-            <p className='px-4 py-6 pt-0 ml-4 -mt-4 dark:text-gray-600'>
+            <p className='px-4 py-6 pt-0 ml-4 -mt-4 dark:text-slate-200'>
               Managing state in your React apps isn’t as simple as using
               useState or useReducer. Not only are there are a lot of different
               kinds of state, but there often dozens of ways of managing each
@@ -80,7 +80,7 @@ const Blog = () => {
             <summary className='px-4 py-6 focus:outline-none focus-visible:ring-violet-400'>
               How does prototypical inheritance work?
             </summary>
-            <p className='px-4 py-6 pt-0 ml-4 -mt-4 dark:text-gray-600'>
+            <p className='px-4 py-6 pt-0 ml-4 -mt-4 dark:text-slate-200'>
               very object with its methods and properties contains an internal
               and hidden property known as [[Prototype]]. The Prototypal
               Inheritance is a feature in javascript used to add methods and
@@ -95,7 +95,7 @@ const Blog = () => {
             <summary className='px-4 py-6 focus:outline-none focus-visible:ring-violet-400'>
               What is a unit test? Why should we write unit tests?
             </summary>
-            <p className='px-4 py-6 pt-0 ml-4 -mt-4 dark:text-gray-600'>
+            <p className='px-4 py-6 pt-0 ml-4 -mt-4 dark:text-slate-200'>
               Unit testing is a software development process in which the
               smallest testable parts of an application, called units, are
               individually and independently scrutinized for proper operation.
@@ -133,7 +133,7 @@ const Blog = () => {
             <summary className='px-4 py-6 focus:outline-none focus-visible:ring-violet-400'>
               React vs. Angular vs. Vue?
             </summary>
-            <p className='px-4 py-6 pt-0 ml-4 -mt-4 dark:text-gray-600'>
+            <p className='px-4 py-6 pt-0 ml-4 -mt-4 dark:text-slate-200'>
               <b>React VS Angular</b>
               If the choice you’re making is based on Angular vs React alone,
               then you’ll simply need to consider the pros and cons discussed

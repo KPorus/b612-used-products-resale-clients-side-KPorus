@@ -9,7 +9,7 @@ const AppleProducts = () => {
   const { isLoading, refetch, data: product= [] } = useQuery({
     queryKey: ['userPuduct'],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/userProduct/apple`);
+      const res = await fetch(`https://b612-used-products-resale-server-side-kp-orus.vercel.app/userProduct/apple`);
       const data = await res.json();
       return data
   }
