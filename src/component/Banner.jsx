@@ -6,12 +6,12 @@ import "../Pages/CSS/style.css";
 const Banner = () => {
   const { user } = useContext(AuthContext);
   return (
-    <section className=' dark:text-gray-900'>
+    <section className=' text-gray-900'>
       <div className='container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between'>
         <div className=' flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left'>
           <h1 className='text-5xl font-bold leading-none sm:text-6xl'>
           Hi
-            <span className='dark:text-violet-400'></span> Welcome To our
+            <span className='text-violet-400'></span> Welcome To our
             platform
           </h1>
           <p className='mt-6 mb-8 text-lg sm:mb-12'>
@@ -22,13 +22,13 @@ const Banner = () => {
             {user?.email ? (
               <Link
                 to='/desboard'
-                className=' drop-shadow-2xl px-8 py-3 text-lg font-semibold rounded dark:bg-[#085594] dark:text-slate-200'>
+                className=' drop-shadow-2xl px-8 py-3 text-lg font-semibold rounded bg-[#085594] text-slate-200'>
                 Get started
               </Link>
             ) : (
               <Link
                 to='/signUp'
-                className=' drop-shadow-2xl px-8 py-3 text-lg font-semibold rounded dark:bg-[#085594] dark:text-slate-200'>
+                className=' drop-shadow-2xl px-8 py-3 text-lg font-semibold rounded bg-[#085594] text-slate-200'>
                 Get started
               </Link>
             )}

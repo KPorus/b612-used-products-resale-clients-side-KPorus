@@ -65,7 +65,7 @@ const Navber = () => {
                 </Link>
               )}
             </li>
-            <li className="dark:bg-[#085594] text-white p-2">{date}</li>
+            <li className="bg-[#085594] text-white p-2">{date}</li>
           </ul>
         </div>
         <Link to='/' className='normal-case text-xl'>
@@ -103,7 +103,7 @@ const Navber = () => {
               </Link>
             )}
           </li>
-          <li><h1 className="btn dark:bg-[#085594] text-white w-28 h-20">Todays Date:{date}</h1></li>
+          <li><h1 className="btn bg-[#085594] text-white w-28 h-20">Todays Date:{date}</h1></li>
         </ul>
       </div>
       <div className='navbar-end'>

@@ -88,13 +88,13 @@ const AddProduct = () => {
       <h1 className='uppercase font-semibold text-2xl border-b-8 text-center'>
         Add Your product
       </h1>
-      <section className='p-6 dark:bg-gray-800 dark:text-gray-50 m-6'>
+      <section className='p-6 bg-gray-800 text-gray-50 m-6'>
         <form
           onSubmit={addProduct}
           novalidate=''
           action=''
           className='container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid m-12'>
-          <fieldset className='grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm dark:bg-gray-900'>
+          <fieldset className='grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm bg-gray-900'>
             <div className='space-y-2 col-span-full lg:col-span-1'>
               <p className='font-medium'>Product Inormation</p>
               <p className='text-xs'>
@@ -112,7 +112,7 @@ const AddProduct = () => {
                   type='text'
                   required
                   placeholder='seller name'
-                  className='w-full input input-bordered rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900'
+                  className='w-full input input-bordered rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 border-gray-700 text-gray-900'
                 />
               </div>
               <div className='col-span-full sm:col-span-3'>
@@ -125,7 +125,7 @@ const AddProduct = () => {
                   type='file'
                   required
                   placeholder='Product name'
-                  className='w-full input input-bordered rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900'
+                  className='w-full input input-bordered rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 border-gray-700 text-gray-900'
                 />
               </div>
               <div className='col-span-full sm:col-span-3'>
@@ -138,7 +138,7 @@ const AddProduct = () => {
                   type='text'
                   required
                   placeholder='Product name'
-                  className='w-full input input-bordered rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900'
+                  className='w-full input input-bordered rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 border-gray-700 text-gray-900'
                 />
               </div>
               <div className='col-span-full sm:col-span-3'>
@@ -149,7 +149,7 @@ const AddProduct = () => {
                   id='brand'
                   required
                   onChange={handle}
-                  className='select select-bordered w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900'>
+                  className='select select-bordered w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 border-gray-700 text-gray-900'>
                   <option  selected>
                     Select a Brand Name
                   </option>
@@ -169,7 +169,7 @@ const AddProduct = () => {
                   placeholder='Email'
                   defaultValue={user?.email}
                   readOnly
-                  className='w-full input input-bordered rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900'
+                  className='w-full input input-bordered rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 border-gray-700 text-gray-900'
                 />
               </div>
               <div className='col-span-full'>
@@ -182,7 +182,7 @@ const AddProduct = () => {
                   type='text'
                   required
                   placeholder='Please Explain your Product'
-                  className='w-full input input-bordered  rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900'
+                  className='w-full input input-bordered  rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 border-gray-700 text-gray-900'
                 />
               </div>
               <div className='col-span-full sm:col-span-2'>
@@ -195,7 +195,7 @@ const AddProduct = () => {
                   type='text'
                   required
                   placeholder='Enter your Price'
-                  className='w-full input input-bordered rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900'
+                  className='w-full input input-bordered rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 border-gray-700 text-gray-900'
                 />
               </div>
               <div className='col-span-full sm:col-span-2'>
@@ -208,7 +208,7 @@ const AddProduct = () => {
                   type='text'
                   required
                   placeholder='Please enter original price'
-                  className='w-full input input-bordered rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900'
+                  className='w-full input input-bordered rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 border-gray-700 text-gray-900'
                 />
               </div>
               <div className='col-span-full sm:col-span-2'>
@@ -221,7 +221,7 @@ const AddProduct = () => {
                   type='text'
                   required
                   placeholder='Please enter your loaction'
-                  className='w-full input input-bordered rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900'
+                  className='w-full input input-bordered rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 border-gray-700 text-gray-900'
                 />
               </div>
               <div className='mt-6'>
