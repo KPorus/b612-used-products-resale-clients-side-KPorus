@@ -7,6 +7,9 @@ const AppleProductCard = ({ items, setbookingData }) => {
     location,
     ProductName,
     photo,
+    purchaseYear,
+    SellerPhone,
+    condition,
     sellerName,
     details,
     newPrice,
@@ -18,6 +21,7 @@ const AppleProductCard = ({ items, setbookingData }) => {
       <div className='flex space-x-4'>
         <div className='flex flex-col space-y-1'>
           <span className='text-sm font-semibold'>{sellerName}</span>
+          <span className='text-sm font-semibold'>{SellerPhone}</span>
           <span className='text-xs text-gray-400'>{date}</span>
         </div>
       </div>
@@ -32,9 +36,13 @@ const AppleProductCard = ({ items, setbookingData }) => {
         <p className='text-lg text-gray-400 mt-2 mb-2'>
           Details: {details}
         </p>
+        <p className='text-lg text-gray-400 mt-2 mb-2'>
+          condition: {condition}
+        </p>
       </div>
       <div className='flex flex-wrap justify-between'>
         <div className='flex space-x-2 text-sm text-gray-400'>
+        <strong>Purchase Year: {purchaseYear}</strong>
           <strong>Price: ${newPrice}</strong>
           <strong>Original Price: ${originalPrice}</strong>
         </div>

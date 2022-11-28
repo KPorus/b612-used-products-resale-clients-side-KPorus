@@ -34,6 +34,9 @@ const AddProduct = () => {
     let details = form.details.value;
     let img = e.target.image.files;
     let location = form.location.value;
+    let purchaseYear =  form.yearOfPurchase.value;
+    let condition = form.productCondition.value;
+    let SellerPhone = form.sellerPhone.value;
 
     const image = img[0];
     console.log(image);
@@ -51,9 +54,12 @@ const AddProduct = () => {
           let userProduct = {
             sellerName,
             img,
+            purchaseYear,
             ProductName,
             brandName,
             email,
+            SellerPhone,
+            condition,
             newPrice,
             originalPrice,
             details,
@@ -63,7 +69,7 @@ const AddProduct = () => {
           };
 
           console.log(userProduct);
-          fetch(` https://b612-used-products-resale-server-side-two.vercel.app/userProduct`, {
+          fetch(`https://b612-used-products-resale-server-side-kp-orus.vercel.app/userProduct`, {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -185,6 +191,32 @@ const AddProduct = () => {
                   className='w-full input input-bordered  rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 border-gray-700 text-gray-900'
                 />
               </div>
+              <div className='col-span-full'>
+                <label htmlFor='ProductCondition' className='text-sm'>
+                  Product Condition
+                </label>
+                <input
+                  id='ProductCondition'
+                  name='productCondition'
+                  type='text'
+                  required
+                  placeholder='Please Explain your Product Condition'
+                  className='w-full input input-bordered  rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 border-gray-700 text-gray-900'
+                />
+              </div>
+              <div className='col-span-full'>
+                <label htmlFor='sellerPhone' className='text-sm'>
+                Phone
+                </label>
+                <input
+                  id='sellerPhone'
+                  name='sellerPhone'
+                  type='text'
+                  required
+                  placeholder='Please enter your phone'
+                  className='w-full input input-bordered  rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 border-gray-700 text-gray-900'
+                />
+              </div>
               <div className='col-span-full sm:col-span-2'>
                 <label htmlFor='price' className='text-sm'>
                   Price
@@ -208,6 +240,19 @@ const AddProduct = () => {
                   type='text'
                   required
                   placeholder='Please enter original price'
+                  className='w-full input input-bordered rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 border-gray-700 text-gray-900'
+                />
+              </div>
+              <div className='col-span-full sm:col-span-2'>
+                <label htmlFor='yearOfPurchase' className='text-sm'>
+                Year Of Purchase
+                </label>
+                <input
+                  id='yearOfPurchase'
+                  name='PurchaseYear'
+                  type='date'
+                  required
+                  placeholder='Please enter year of Purchase'
                   className='w-full input input-bordered rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 border-gray-700 text-gray-900'
                 />
               </div>

@@ -7,6 +7,9 @@ const SellerProductCard = ({ items, refetch }) => {
     location,
     currentDate,
     ProductName,
+    purchaseYear,
+    SellerPhone,
+    condition,
     _id,
     photo,
     details,
@@ -17,12 +20,15 @@ const SellerProductCard = ({ items, refetch }) => {
 
   console.log(items);
   let handleDelete = (_id) => {
-    fetch(` https://b612-used-products-resale-server-side-two.vercel.app/userProduct/${_id}`, {
-      method: "DELETE",
-      headers: {
-        authorization: `bearer ${localStorage.getItem("token")}`,
-      },
-    })
+    fetch(
+      `https://b612-used-products-resale-server-side-kp-orus.vercel.app/userProduct/${_id}`,
+      {
+        method: "DELETE",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.deletedCount > 0) {
@@ -48,8 +54,17 @@ const SellerProductCard = ({ items, refetch }) => {
         <h2 className='mb-1 text-xl font-semibold'>{ProductName}</h2>
         <h2 className='mb-1 text-sm font-semibold'>{brandName}</h2>
         <p className='text-lg text-gray-400 mt-2 mb-2'>Details: {details}</p>
+        <p className='text-lg text-gray-400 mt-2 mb-2'>
+          condition: {condition}
+        </p>
+        <p className='text-lg text-gray-400 mt-2 mb-2'>
+          Purchase Year: {purchaseYear}
+        </p>
         <strong>
           {" "}
+          <p className='text-lg text-gray-400 mt-2 mb-2'>
+            Seller Phone: {SellerPhone}
+          </p>
           <p className='text-sm text-gray-400'>Post on: {currentDate}</p>
           <p className='text-sm text-gray-400'>Location: {location}</p>
         </strong>

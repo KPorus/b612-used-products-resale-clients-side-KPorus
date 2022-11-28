@@ -27,7 +27,7 @@ const Modal = ({ bookingData, setbookingData, refetch }) => {
       sellerEmail
     };
     console.log(purchase);
-    fetch(" https://b612-used-products-resale-server-side-two.vercel.app/orders", {
+    fetch("https://b612-used-products-resale-server-side-kp-orus.vercel.app/orders", {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -13,7 +13,7 @@ const SamsungProducts = () => {
   } = useQuery({
     queryKey: ["userPuduct"],
     queryFn: async () => {
-      const res = await fetch(` https://b612-used-products-resale-server-side-two.vercel.app/userProduct/samsung`);
+      const res = await fetch(`https://b612-used-products-resale-server-side-kp-orus.vercel.app/userProduct/samsung`);
       const data = await res.json();
       return data;
     },
