@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { AiFillWarning } from "react-icons/ai";
 import { AuthContext } from "../component/context/AuthProvider/AuthProvider";
 
 const AddProduct = () => {
@@ -21,7 +22,7 @@ const AddProduct = () => {
   function Reset() {
     var dropDown = document.getElementById("brand");
     dropDown.selectedIndex = 0;
-}
+  }
 
   let addProduct = (e) => {
     e.preventDefault();
@@ -34,7 +35,7 @@ const AddProduct = () => {
     let details = form.details.value;
     let img = e.target.image.files;
     let location = form.location.value;
-    let purchaseYear =  form.yearOfPurchase.value;
+    let purchaseYear = form.yearOfPurchase.value;
     let condition = form.productCondition.value;
     let SellerPhone = form.sellerPhone.value;
 
@@ -69,18 +70,21 @@ const AddProduct = () => {
           };
 
           console.log(userProduct);
-          fetch(`https://b612-used-products-resale-server-side-kp-orus.vercel.app/userProduct`, {
-            method: "POST",
-            headers: {
-              "content-type": "application/json",
-            },
-            body: JSON.stringify(userProduct),
-          })
+          fetch(
+            `https://b612-used-products-resale-server-side-kp-orus.vercel.app/userProduct`,
+            {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(userProduct),
+            }
+          )
             .then((res) => res.json())
             .then((data) => {
               console.log(data);
               toast.success("Product has beed added");
-              e.target.reset()
+              e.target.reset();
               Reset();
               setbrandName("");
             });
@@ -94,6 +98,11 @@ const AddProduct = () => {
       <h1 className='uppercase font-semibold text-2xl border-b-8 text-center'>
         Add Your product
       </h1>
+      <p className="mt-4 mx-16 font-[Lato] font-semibold text-2xl text-[#ff682d] flex ">
+        <AiFillWarning className="text-7xl"></AiFillWarning> Please Check your brand name and other information is ok. If not then
+        your have to delete your product from Your product catagory. Otherwise
+        Your product will not be Published
+      </p>
       <section className='p-6 bg-gray-800 text-gray-50 m-6'>
         <form
           onSubmit={addProduct}
@@ -156,9 +165,7 @@ const AddProduct = () => {
                   required
                   onChange={handle}
                   className='select select-bordered w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 border-gray-700 text-gray-900'>
-                  <option  selected>
-                    Select a Brand Name
-                  </option>
+                  <option selected>Select a Brand Name</option>
                   <option>samsung</option>
                   <option>apple</option>
                   <option>walton</option>
@@ -206,7 +213,7 @@ const AddProduct = () => {
               </div>
               <div className='col-span-full'>
                 <label htmlFor='sellerPhone' className='text-sm'>
-                Phone
+                  Phone
                 </label>
                 <input
                   id='sellerPhone'
@@ -245,7 +252,7 @@ const AddProduct = () => {
               </div>
               <div className='col-span-full sm:col-span-2'>
                 <label htmlFor='yearOfPurchase' className='text-sm'>
-                Year Of Purchase
+                  Year Of Purchase
                 </label>
                 <input
                   id='yearOfPurchase'
@@ -270,7 +277,9 @@ const AddProduct = () => {
                 />
               </div>
               <div className='mt-6'>
-                <button className='btn btn-primary bg-[#003566] text-white sm:text-xl' type='submit'>
+                <button
+                  className='btn btn-primary bg-[#003566] text-white sm:text-xl'
+                  type='submit'>
                   Submit
                 </button>
               </div>
