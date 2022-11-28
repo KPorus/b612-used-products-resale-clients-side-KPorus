@@ -9,7 +9,7 @@ const UserInfo = () => {
   const { isLoading, data: userProfile = [] } = useQuery({
     queryKey: ["userProfile"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/user/${user?.email}`);
+      const res = await fetch(` https://b612-used-products-resale-server-side-two.vercel.app/user/${user?.email}`);
       const data = await res.json();
       return data;
     },

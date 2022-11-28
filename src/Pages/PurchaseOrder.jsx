@@ -15,7 +15,7 @@ const PurchaseOrder = () => {
     queryKey: ["userPuduct"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/sellerOrder/${user?.email}`
+        ` https://b612-used-products-resale-server-side-two.vercel.app/sellerOrder/${user?.email}`
       );
       const data = await res.json();
       return data;

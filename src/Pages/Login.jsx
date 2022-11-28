@@ -42,7 +42,7 @@ const Login = () => {
         setLoading(true)
         setUser(user);
 
-        fetch(' http://localhost:5000/jwt', {
+        fetch('  https://b612-used-products-resale-server-side-two.vercel.app/jwt', {
           method: 'POST',
           headers: {
               'content-type': 'application/json'
@@ -103,7 +103,7 @@ const Login = () => {
 
   const saveUser = (name, email, isSeller) =>{
     const user ={name, email, role:isSeller};
-    fetch('http://localhost:5000/users', {
+    fetch(' https://b612-used-products-resale-server-side-two.vercel.app/users', {
         method: 'POST',
         headers: {
             'content-type': 'application/json'
@@ -129,7 +129,7 @@ const Login = () => {
           email: user.email
         }
         console.log(currentUser);
-        fetch(' http://localhost:5000/jwt', {
+        fetch('  https://b612-used-products-resale-server-side-two.vercel.app/jwt', {
           method: 'POST',
           headers: {
               'content-type': 'application/json'

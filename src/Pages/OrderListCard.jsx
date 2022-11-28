@@ -5,7 +5,7 @@ const OrderListCard = ({ items, refetch }) => {
     let { productName,_id,phone,email,name,price,brand} =items;
   console.log(items);
   let handleDelete = (_id) => {
-    fetch(`http://localhost:5000/orders/${_id}`, {
+    fetch(` https://b612-used-products-resale-server-side-two.vercel.app/orders/${_id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("token")}`,

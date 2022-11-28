@@ -11,7 +11,7 @@ const AllProduct = () => {
   } = useQuery({
     queryKey: ["Allproduct"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/allProduct`);
+      const res = await fetch(` https://b612-used-products-resale-server-side-two.vercel.app/allProduct`);
       const data = await res.json();
       return data;
     },
