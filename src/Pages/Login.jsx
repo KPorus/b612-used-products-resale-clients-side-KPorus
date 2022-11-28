@@ -6,6 +6,9 @@ import { FcGoogle } from "react-icons/fc";
 import { GoogleAuthProvider } from "firebase/auth";
 
 const Login = () => {
+  
+  const [isSeller, setisSeller] = useState("Buyer");
+  const [createdUserEmail, setCreatedUserEmail] = useState('')
   const { login,googleLogin, setLoading, setUser, forgetPassword } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
@@ -39,7 +42,7 @@ const Login = () => {
         setLoading(true)
         setUser(user);
 
-        fetch(' https://b612-used-products-resale-server-side-kp-orus.vercel.app/jwt', {
+        fetch(' http://localhost:5000/jwt', {
           method: 'POST',
           headers: {
               'content-type': 'application/json'
@@ -97,6 +100,22 @@ const Login = () => {
     }
   };
 
+
+  const saveUser = (name, email, isSeller) =>{
+    const user ={name, email, role:isSeller};
+    fetch('http://localhost:5000/users', {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(user)
+    })
+    .then(res => res.json())
+    .then(data =>{
+        setCreatedUserEmail(email);
+    })
+}
+
    let googleProvider = new GoogleAuthProvider();
   let handleGoogleLogin = () => {
     googleLogin(googleProvider)
@@ -110,7 +129,7 @@ const Login = () => {
           email: user.email
         }
         console.log(currentUser);
-        fetch(' https://b612-used-products-resale-server-side-kp-orus.vercel.app/jwt', {
+        fetch(' http://localhost:5000/jwt', {
           method: 'POST',
           headers: {
               'content-type': 'application/json'
@@ -121,6 +140,7 @@ const Login = () => {
           .then(data => {
               console.log(data);
               localStorage.setItem('token', data.token);
+              saveUser(user?.displayName,user?.email,isSeller)
               navigate(from, { replace: true });
           });
         // ...
@@ -129,6 +149,7 @@ const Login = () => {
         toast.error("login failled")
       });
   }
+
 
 
   let resetPass = ()=>

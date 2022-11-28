@@ -12,7 +12,7 @@ const AllSeller = () => {
     } = useQuery({
         queryKey: ["seller"],
         queryFn: async () => {
-            const res = await fetch(`https://b612-used-products-resale-server-side-kp-orus.vercel.app/seller`);
+            const res = await fetch(`http://localhost:5000/seller`);
             const data = await res.json();
             return data;
         },
@@ -23,7 +23,7 @@ const AllSeller = () => {
     }
 
     let sellerDelete = (id) => {
-        fetch(`https://b612-used-products-resale-server-side-kp-orus.vercel.app/seller/${id}`, {
+        fetch(`http://localhost:5000/seller/${id}`, {
             method: "DELETE",
             headers: {
                 authorization: `bearer ${localStorage.getItem("token")}`,

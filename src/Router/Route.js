@@ -77,7 +77,7 @@ export const route = createBrowserRouter([
                 element:<PrivateRoute><SamsungProducts></SamsungProducts></PrivateRoute>,
                 loader:async ({params})=>
                 {
-                    return fetch(` https://b612-used-products-resale-server-side-kp-orus.vercel.app/samsung/${params.id}`)
+                    return fetch(` http://localhost:5000/samsung/${params.id}`)
                 }
             },
             {
@@ -85,7 +85,7 @@ export const route = createBrowserRouter([
                 element:<PrivateRoute><AppleProducts></AppleProducts></PrivateRoute>,
                 loader:async ({params})=>
                 {
-                    return fetch(` https://b612-used-products-resale-server-side-kp-orus.vercel.app/apple/${params.id}`)
+                    return fetch(` http://localhost:5000/apple/${params.id}`)
                 }
             },
             {
@@ -93,7 +93,7 @@ export const route = createBrowserRouter([
                 element:<PrivateRoute><WaltonProducts></WaltonProducts></PrivateRoute>,
                 loader:async ({params})=>
                 {
-                    return fetch(` https://b612-used-products-resale-server-side-kp-orus.vercel.app/walton/${params.id}`)
+                    return fetch(` http://localhost:5000/walton/${params.id}`)
                 }
             },
         ]
