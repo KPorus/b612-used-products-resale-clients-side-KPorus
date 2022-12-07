@@ -3,6 +3,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 Key Features:
+
 •	The user can place an order, the seller can add products, delete product & Admin can control the user, and the Seller
 •	Firebase Authentication
 •	Create user, admin & seller type of Web experience
