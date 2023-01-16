@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { createContext, useState } from "react";
+import React, { useState } from "react";
 import Loading from "../component/Loading";
 import Modal from "../component/Modal";
 import SamsungProductCard from "./SamsungProductCard";
