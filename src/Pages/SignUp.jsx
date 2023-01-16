@@ -1,15 +1,15 @@
 import React, { useContext } from "react";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
-import { AuthContext } from "../component/context/AuthProvider/AuthProvider"
+import { AuthContext } from "../component/context/AuthProvider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { GoogleAuthProvider } from "firebase/auth";
 import { FcGoogle } from "react-icons/fc";
 
-const SignUp= () => {
-  const {googleLogin} = useContext(AuthContext);
+const SignUp = () => {
+  const { googleLogin } = useContext(AuthContext);
   const [isSeller, setisSeller] = useState("Buyer");
-  const [createdUserEmail, setCreatedUserEmail] = useState('')
+  const [createdUserEmail, setCreatedUserEmail] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
@@ -41,17 +41,20 @@ const SignUp= () => {
         const currentUser = {
           email: userInfo.email,
         };
-        fetch(" https://b6a11-service-review-server-side-kp-orus-steel.vercel.app/jwt", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(currentUser),
-        })
+        fetch(
+          " https://b6a11-service-review-server-side-kp-orus-steel.vercel.app/jwt",
+          {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(currentUser),
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
-            toast.success('Sign up Successfully.')
-            saveUser(name,email,isSeller);
+            toast.success("Sign up Successfully.");
+            saveUser(name, email, isSeller);
             localStorage.setItem("token", data.token);
             navigate(from, { replace: true });
           });
@@ -63,22 +66,23 @@ const SignUp= () => {
       });
   };
 
-
-  const saveUser = (name, email, isSeller) =>{
-    const user ={name, email, role:isSeller};
-    fetch('https://b612-used-products-resale-server-side-kp-orus.vercel.app/users', {
-        method: 'POST',
+  const saveUser = (name, email, isSeller) => {
+    const user = { name, email, role: isSeller };
+    fetch(
+      "https://b612-used-products-resale-server-side-kp-orus.vercel.app/users",
+      {
+        method: "POST",
         headers: {
-            'content-type': 'application/json'
+          "content-type": "application/json",
         },
-        body: JSON.stringify(user)
-    })
-    .then(res => res.json())
-    .then(data =>{
+        body: JSON.stringify(user),
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
         setCreatedUserEmail(email);
-    })
-}
-
+      });
+  };
 
   const handleEmailChange = (e) => {
     const email = e.target.value;
@@ -113,54 +117,55 @@ const SignUp= () => {
     }
   };
 
-
-
   let googleProvider = new GoogleAuthProvider();
   let handleGoogleLogin = () => {
     googleLogin(googleProvider)
       .then((result) => {
         const user = result.user;
-        setLoading(true)
-        toast.success("Login successfull!")
+        setLoading(true);
+        toast.success("Login successfull!");
 
         const currentUser = {
-          email: user.email
-        }
+          email: user.email,
+        };
         console.log(currentUser);
-        fetch(' https://b612-used-products-resale-server-side-kp-orus.vercel.app/jwt', {
-          method: 'POST',
-          headers: {
-              'content-type': 'application/json'
-          },
-          body: JSON.stringify(currentUser)
-      })
-          .then(res => res.json())
-          .then(data => {
-              saveUser(user.displayName,user.email,isSeller);
-              localStorage.setItem('token', data.token);
-              navigate(from, { replace: true });
+        fetch(
+          " https://b612-used-products-resale-server-side-kp-orus.vercel.app/jwt",
+          {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(currentUser),
+          }
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            saveUser(user.displayName, user.email, isSeller);
+            localStorage.setItem("token", data.token);
+            navigate(from, { replace: true });
           });
         // ...
-      }).catch((error) => {
+      })
+      .catch((error) => {
         console.log(error);
-        toast.error("login failled")
+        toast.error("login failled");
       });
-  }
+  };
 
   let Sellercheck = (e) => {
-   let account =  e.target.checked;
-   console.log(account);
-   setisSeller("Seller");
-   if(account === false)
-   {
-    setisSeller("Buyer")
-    return
-  }
+    let account = e.target.checked;
+    console.log(account);
+    setisSeller("Seller");
+    if (account === false) {
+      setisSeller("Buyer");
+      return;
+    }
   };
 
   console.log(isSeller);
 
-  document.title = "Sign Up"
+  document.title = "Sign Up";
   return (
     <div className='hero min-h-screen bg-base-200' onSubmit={handleLogin}>
       <div className='hero-content'>
@@ -208,14 +213,15 @@ const SignUp= () => {
 
               <small>
                 {" "}
-                <Link to='/login'>Already have a account!! <span className="font-bold text-[#085594]">Login</span></Link>
+                <Link to='/login'>
+                  Already have a account!!{" "}
+                  <span className='font-bold text-[#085594]'>Login</span>
+                </Link>
               </small>
               <div className='flex text-xl'>
                 <input type='checkbox' onClick={Sellercheck} />
-                <label className='label' value="seller">
-                  <span className='label-text'>
-                    SELLER ACCOUNT
-                  </span>
+                <label className='label' value='seller'>
+                  <span className='label-text'>SELLER ACCOUNT</span>
                 </label>
               </div>
             </div>
@@ -225,7 +231,11 @@ const SignUp= () => {
                 Sign up
               </button>
             </div>
-            <button className="btn btn-ghost w-1/2 mx-auto mt-2" onClick={handleGoogleLogin}><FcGoogle className="text-2xl mr-2"></FcGoogle>Google Login</button>
+            <button
+              className='btn btn-ghost w-1/2 mx-auto mt-2'
+              onClick={handleGoogleLogin}>
+              <FcGoogle className='text-2xl mr-2'></FcGoogle>Google Login
+            </button>
           </div>
         </form>
       </div>

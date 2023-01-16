@@ -65,13 +65,15 @@ const Navber = () => {
                 </Link>
               )}
             </li>
-            <li className="bg-[#085594] text-white p-2">{date}</li>
+            <li className='bg-[#085594] text-white p-2'>{date}</li>
           </ul>
         </div>
         <Link to='/' className='normal-case text-xl'>
           <div className='flex items-center p-2'>
-            <img src='../mobile.svg' alt="logo"></img>
-            <span className='font-bold uppercase hidden md:block'>Buy&Sell</span>
+            <img src='../mobile.svg' alt='logo'></img>
+            <span className='font-bold uppercase hidden md:block'>
+              PhoneFlip
+            </span>
           </div>
         </Link>
       </div>
@@ -88,10 +90,10 @@ const Navber = () => {
             </Link>
           </li>
           <li>
-              <Link to='/blog' className='font-bold uppercase'>
-                Blog
-              </Link>
-            </li>
+            <Link to='/blog' className='font-bold uppercase'>
+              Blog
+            </Link>
+          </li>
           <li>
             {user ? (
               <button className='uppercase font-bold' onClick={handleSignOut}>
@@ -103,7 +105,11 @@ const Navber = () => {
               </Link>
             )}
           </li>
-          <li><h1 className="btn bg-[#085594] text-white w-28 h-20">Todays Date:{date}</h1></li>
+          <li>
+            <h1 className='btn bg-[#085594] text-white w-28 h-20'>
+              Todays Date:{date}
+            </h1>
+          </li>
         </ul>
       </div>
       <div className='navbar-end'>
@@ -117,7 +123,10 @@ const Navber = () => {
           </div>
         </div>
       </div>
-      <label htmlFor="desboard" tabIndex={2} className='btn btn-ghost lg:hidden'>
+      <label
+        htmlFor='desboard'
+        tabIndex={2}
+        className='btn btn-ghost lg:hidden'>
         <svg
           xmlns='http://www.w3.org/2000/svg'
           className='h-5 w-5'
