@@ -42,7 +42,7 @@ const SignUp = () => {
           email: userInfo.email,
         };
         fetch(
-          " https://b6a11-service-review-server-side-kp-orus-steel.vercel.app/jwt",
+          "https://b612-used-products-resale-server-side-kp-orus.vercel.app/jwt",
           {
             method: "POST",
             headers: {
