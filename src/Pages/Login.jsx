@@ -54,6 +54,7 @@ const Login = () => {
               // local storage is the easiest but not the best place to store jwt token
               localStorage.setItem('token', data.token);
               e.target.reset();
+              console.log(data)
               navigate(from, { replace: true });
           });
 

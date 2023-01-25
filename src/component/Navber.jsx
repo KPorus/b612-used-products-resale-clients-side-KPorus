@@ -1,148 +1,143 @@
-import React, { useContext } from "react";
-import toast from "react-hot-toast";
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import CssBaseline from "@mui/material/CssBaseline";
+import Divider from "@mui/material/Divider";
+import Drawer from "@mui/material/Drawer";
+import IconButton from "@mui/material/IconButton";
+import List from "@mui/material/List";
+import MenuIcon from "@mui/icons-material/Menu";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import { Stack } from "@mui/system";
 import { Link } from "react-router-dom";
+import {
+  PersonOutlineOutlined,
+  ShoppingCartOutlined,
+} from "@mui/icons-material";
+import { Badge, Menu, MenuItem } from "@mui/material";
+import { toast } from "react-hot-toast";
 import { AuthContext } from "./context/AuthProvider/AuthProvider";
 
-const Navber = () => {
-  const { user, usersignOut } = useContext(AuthContext);
-  let handleSignOut = () => {
-    usersignOut()
-      .then(() => {
-        //signout
-        toast.success("Logout successfull!");
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-  let showdate = new Date();
-  let date = showdate.toDateString();
-  return (
-    <div className='navbar bg-base-100 container mx-auto'>
-      <div className='navbar-start'>
-        <div className='dropdown'>
-          <label tabIndex={0} className='btn btn-ghost lg:hidden'>
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              className='h-5 w-5'
-              fill='none'
-              viewBox='0 0 24 24'
-              stroke='currentColor'>
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                strokeWidth='2'
-                d='M4 6h16M4 12h8m-8 6h16'
-              />
-            </svg>
-          </label>
-          <ul
-            tabIndex={0}
-            className='menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52'>
-            <li>
-              <Link to='/' className='font-bold uppercase'>
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link to='/desboard' className='font-bold uppercase'>
-                Desboard
-              </Link>
-            </li>
-            <li>
-              <Link to='/blog' className='font-bold uppercase'>
-                Blog
-              </Link>
-            </li>
-            <li>
-              {user ? (
-                <button className='uppercase font-bold' onClick={handleSignOut}>
-                  LogOut
-                </button>
-              ) : (
-                <Link className='uppercase  font-bold' to='/login'>
-                  Login
-                </Link>
-              )}
-            </li>
-            <li className='bg-[#085594] text-white p-2'>{date}</li>
-          </ul>
-        </div>
-        <Link to='/' className='normal-case text-xl'>
-          <div className='flex items-center p-2'>
-            <img src='../mobile.svg' alt='logo'></img>
-            <span className='font-bold uppercase hidden md:block'>
-              PhoneFlip
-            </span>
-          </div>
-        </Link>
-      </div>
-      <div className='navbar-center hidden lg:flex'>
-        <ul className='menu menu-horizontal p-0'>
-          <li>
-            <Link to='/' className='font-bold uppercase'>
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link to='/desboard' className='font-bold uppercase'>
-              Desboard
-            </Link>
-          </li>
-          <li>
-            <Link to='/blog' className='font-bold uppercase'>
-              Blog
-            </Link>
-          </li>
-          <li>
-            {user ? (
-              <button className='uppercase font-bold' onClick={handleSignOut}>
-                LogOut
-              </button>
-            ) : (
-              <Link className='uppercase font-bold' to='/login'>
-                Login
-              </Link>
-            )}
-          </li>
-          <li>
-            <h1 className='btn bg-[#085594] text-white w-28 h-20'>
-              Todays Date:{date}
-            </h1>
-          </li>
-        </ul>
-      </div>
-      <div className='navbar-end'>
-        <div className='avatar placeholder'>
-          <div className='bg-neutral-focus text-neutral-content rounded-full w-12'>
-            {user?.photoURL ? (
-              <img src={user.photoURL} alt='user'></img>
-            ) : (
-              <span>MX</span>
-            )}
-          </div>
-        </div>
-      </div>
-      <label
-        htmlFor='desboard'
-        tabIndex={2}
-        className='btn btn-ghost lg:hidden'>
-        <svg
-          xmlns='http://www.w3.org/2000/svg'
-          className='h-5 w-5'
-          fill='none'
-          viewBox='0 0 24 24'
-          stroke='currentColor'>
-          <path
-            strokeLinecap='round'
-            strokeLinejoin='round'
-            strokeWidth='2'
-            d='M4 6h16M4 12h8m-8 6h16'
-          />
-        </svg>
-      </label>
-    </div>
-  );
-};
+const drawerWidth = 240;
 
-export default Navber;
+function DrawerAppBar(props) {
+  const { window } = props;
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const { user, usersignOut } = React.useContext(AuthContext);
+
+  const handleDrawerToggle = () => {
+    setMobileOpen((prevState) => !prevState);
+  };
+
+  const drawer = (
+    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
+      <Typography variant='h6' sx={{ my: 2 }}>
+        Tspring
+      </Typography>
+      <Divider />
+      <List>
+        <Stack gap={4}>
+          <Link to='/'>Home</Link>
+          {/* <Link to='/blog'>Blogs</Link> */}
+          <Link to='/products'>Products</Link>
+          <Link to='/order'>Orders</Link>
+          {user ? "" : <Link to='/login'>Login</Link>}
+        </Stack>
+      </List>
+    </Box>
+  );
+
+  const container =
+    window !== undefined ? () => window().document.body : undefined;
+
+const [open, setopen] = React.useState(false);
+
+
+let handleSignOut = () => {
+  usersignOut()
+    .then(() => {
+      //signout
+      toast.success("Logout successfull!");
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+  return (
+    <Box sx={{ display: "flex" }}>
+      <CssBaseline />
+      <AppBar component='nav' position='sticky'>
+        <Toolbar sx={{ justifyContent: "space-between" }}>
+          <IconButton
+            color='inherit'
+            aria-label='open drawer'
+            edge='start'
+            onClick={handleDrawerToggle}
+            sx={{ mr: 2, display: { sm: "none" } }}>
+            <MenuIcon />
+          </IconButton>
+          <Typography variant='h6' component='div'>
+            <Link to='/'>tričko</Link>
+          </Typography>
+          <Box sx={{ display: { xs: "none", sm: "flex" } }}>
+            <Stack direction='row' gap={4}>
+              <Link to='/'>Home</Link>
+              {/* <Link to='/blog'>Blogs</Link> */}
+              <Link to='/products'>Products</Link>
+              <Link to='/order'>Orders</Link>
+              {user ? "" : <Link to='/login'>Login</Link>}
+            </Stack>
+          </Box>
+          <div className='flex gap-1'>
+            <PersonOutlineOutlined
+              onClick={(e) => setopen(true)}></PersonOutlineOutlined>{" "}
+            <Badge badgeContent={2} color='error'>
+              <ShoppingCartOutlined />
+            </Badge>
+          </div>
+        </Toolbar>
+      </AppBar>
+      <Box component='nav'>
+        <Drawer
+          container={container}
+          variant='temporary'
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          ModalProps={{
+            keepMounted: true, // Better open performance on mobile.
+          }}
+          sx={{
+            display: { xs: "block", sm: "none" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+            },
+          }}>
+          {drawer}
+        </Drawer>
+      </Box>
+      <Menu
+        id='demo-positioned-menu'
+        aria-labelledby='demo-positioned-button'
+        open={open}
+        onClose={(e) => setopen(false)}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}>
+        <MenuItem>
+          <Link to='/desboard'>Desboard</Link>
+        </MenuItem>
+        {user && <MenuItem onClick={handleSignOut}>Logout</MenuItem>}
+      </Menu>
+    </Box>
+  );
+}
+
+
+export default DrawerAppBar;
