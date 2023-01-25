@@ -18,6 +18,7 @@ import {
 import { Badge, Menu, MenuItem } from "@mui/material";
 import { toast } from "react-hot-toast";
 import { AuthContext } from "./context/AuthProvider/AuthProvider";
+import { theme } from "../theme";
 
 const drawerWidth = 240;
 
@@ -65,9 +66,9 @@ let handleSignOut = () => {
     });
 };
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex"}}>
       <CssBaseline />
-      <AppBar component='nav' position='sticky'>
+      <AppBar component='nav' position='sticky' sx={{backgroundColor:"white", color:"black"}}>
         <Toolbar sx={{ justifyContent: "space-between" }}>
           <IconButton
             color='inherit'
@@ -77,9 +78,15 @@ let handleSignOut = () => {
             sx={{ mr: 2, display: { sm: "none" } }}>
             <MenuIcon />
           </IconButton>
-          <Typography variant='h6' component='div'>
-            <Link to='/'>tričko</Link>
-          </Typography>
+          <div className='flex items-center'>
+            <img
+              src='../mobile.svg'
+              alt='nav'
+              className='w-10 sm:block hidden mr-2'></img>
+            <Typography variant='h6' component='div' fontWeight={700}>
+              <Link to='/'>PhoneFlip</Link>
+            </Typography>
+          </div>
           <Box sx={{ display: { xs: "none", sm: "flex" } }}>
             <Stack direction='row' gap={4}>
               <Link to='/'>Home</Link>

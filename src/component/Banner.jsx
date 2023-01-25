@@ -10,9 +10,8 @@ const Banner = () => {
       <div className='container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between'>
         <div className=' flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left'>
           <h1 className='text-5xl font-bold leading-none sm:text-6xl'>
-          Hi
-            <span className='text-violet-400'></span> Welcome To our
-            platform
+            Hi
+            <span className='text-violet-400'></span> Welcome To our platform
           </h1>
           <p className='mt-6 mb-8 text-lg sm:mb-12'>
             Here you will find many type of as per your need. In our platform we
@@ -35,11 +34,14 @@ const Banner = () => {
           </div>
         </div>
         <div className=' drop-shadow-xl flex items-center justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128'>
-          <img
-            src='https://i.ibb.co/P41F0Jj/Hands-holding-mobile-phones-with-SMS-and-big-letters-on-screens-removebg-preview.png'
-            alt=''
-            className='object-contain h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128'
-          />
+          <script src='https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js'></script>
+          <lottie-player
+            src='https://lottie.host/23ec7677-2052-407b-bb16-e2ba544a11c1/tlkIrtvyvE.json'
+            background='transparent'
+            speed='1'
+            style={{ width: "500px", height: "500px" }}
+            loop
+            autoplay></lottie-player>
         </div>
       </div>
     </section>

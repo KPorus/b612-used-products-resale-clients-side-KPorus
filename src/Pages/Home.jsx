@@ -4,7 +4,6 @@ import Sales from '../component/Sales';
 import HomeCatagorys from './HomeCatagorys';
 
 const Home = () => {
-    document.title = 'Home'
     return (
         <div>
             <Banner></Banner>
