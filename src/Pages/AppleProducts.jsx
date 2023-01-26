@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import Loading from "../component/Loading";
 import Modal from "../component/Modal";
-import AppleProductCard from "./AppleProductCard";
+import ProductCard from "./ProductCard";
 
 const AppleProducts = () => {
   const [bookingData, setbookingData] = useState(null);
@@ -21,10 +21,10 @@ const AppleProducts = () => {
  
   return (
     <div className='container mx-auto'>
-      <h1 className="font-bold text-4xl text-center uppercase text-slate-800">Iphone</h1>
+      <h1 className="font-bold text-4xl text-center uppercase text-slate-800 mt-4">Iphone</h1>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 m-14'>
         {product.map((items) => (
-          <AppleProductCard  items={items} setbookingData={setbookingData}></AppleProductCard>
+          <ProductCard  items={items} setbookingData={setbookingData}></ProductCard>
         ))}
       </div>
       {bookingData && (

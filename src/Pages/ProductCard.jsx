@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../component/context/AuthProvider/AuthProvider";
 
-const WaltonProductCard = ({ items, setbookingData }) => {
+const ProductCard = ({ items, setbookingData }) => {
+  const {user}  = useContext(AuthContext);
   let {
     brandName,
     currentDate,
     location,
     ProductName,
     photo,
-    sellerName,
     purchaseYear,
     SellerPhone,
     condition,
+    sellerName,
     details,
     newPrice,
     originalPrice,
@@ -33,9 +36,7 @@ const WaltonProductCard = ({ items, setbookingData }) => {
         />
         <h2 className='mb-1 text-xl font-semibold'>{ProductName}</h2>
         <h2 className='mb-1 text-sm font-semibold'>{brandName}</h2>
-        <p className='text-lg text-gray-400 mt-2 mb-2'>
-          Details: {details}
-        </p>
+        <p className='text-lg text-gray-400 mt-2 mb-2'>Details: {details}</p>
         <p className='text-lg text-gray-400 mt-2 mb-2'>
           condition: {condition}
         </p>
@@ -52,14 +53,22 @@ const WaltonProductCard = ({ items, setbookingData }) => {
         <p className='text-sm text-gray-400'>Post on: {currentDate}</p>
         <p className='text-sm text-gray-400'>Location: {location}</p>
       </strong>
-      <label
-        htmlFor='book'
-        className='btn text-white bg-[#003566]  font-bold uppercase btn-info'
-        onClick={() => setbookingData(items)}>
-        Purchase
-      </label>
+      {user ? (
+        <label
+          htmlFor='book'
+          className='btn text-white bg-[#003566]  font-bold uppercase btn-info'
+          onClick={() => setbookingData(items)}>
+          Purchase
+        </label>
+      ) : (
+        <Link
+          className='btn text-white bg-[#003566]  font-bold uppercase btn-info'
+          to='/login'>
+          Please Login !!
+        </Link>
+      )}
     </div>
   );
 };
 
-export default WaltonProductCard;
+export default ProductCard;
