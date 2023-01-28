@@ -73,28 +73,17 @@ export const route = createBrowserRouter([
                 element:<PrivateRoute><AllSeller></AllSeller></PrivateRoute>,
             },
             {
-                path:"/samsung/:id",
+                path:"/samsung",
                 element:<SamsungProducts></SamsungProducts>,
-                loader:async ({params})=>
-                {
-                    return fetch(` https://b612-used-products-resale-server-side-kp-orus.vercel.app/samsung/${params.id}`)
-                }
             },
             {
-                path:"/apple/:id",
+                path:"/apple",
                 element:<AppleProducts></AppleProducts>,
-                loader:async ({params})=>
-                {
-                    return fetch(` https://b612-used-products-resale-server-side-kp-orus.vercel.app/apple/${params.id}`)
-                }
+               
             },
             {
-                path:"/walton/:id",
+                path:"/walton",
                 element:<WaltonProducts></WaltonProducts>,
-                loader:async ({params})=>
-                {
-                    return fetch(` https://b612-used-products-resale-server-side-kp-orus.vercel.app/walton/${params.id}`)
-                }
             },
         ]
     }

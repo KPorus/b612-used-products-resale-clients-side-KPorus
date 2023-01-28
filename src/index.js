@@ -8,6 +8,7 @@ import {
   QueryClientProvider,
   useQuery,
 } from "@tanstack/react-query";
+import ProductProvider from "./component/context/ProductProvider/ProductProvider";
 // import { ThemeProvider } from "@mui/material";
 // import { theme } from "./theme";
 
@@ -17,9 +18,11 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
+      <ProductProvider>
         <AuthProvider>
           <App />
         </AuthProvider>
+      </ProductProvider>
     </QueryClientProvider>
   </React.StrictMode>
 );

@@ -1,33 +1,7 @@
-import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./CSS/style.css";
 
 const HomeCatagorys = () => {
-  const [samsung, setsamsung] = useState([]);
-  const [apple, setapple] = useState([]);
-  const [walton, setwalton] = useState([]);
-
-  useEffect(() => {
-    fetch("https://b612-used-products-resale-server-side-kp-orus.vercel.app/samsung")
-      .then((res) => res.json())
-      .then((data) => setsamsung(data));
-  }, []);
-  let samsungId = samsung.map((id) => id._id);
-
-  useEffect(() => {
-    fetch("https://b612-used-products-resale-server-side-kp-orus.vercel.app/apple")
-      .then((res) => res.json())
-      .then((data) => setapple(data));
-  }, []);
-  let appleId = apple.map((id) => id._id);
-
-  useEffect(() => {
-    fetch("https://b612-used-products-resale-server-side-kp-orus.vercel.app/walton")
-      .then((res) => res.json())
-      .then((data) => setwalton(data));
-  }, []);
-  let waltonId = walton.map((id) => id._id);
-  console.log(waltonId[0]);
   return (
     <div className='mb-12'>
       <h1 className='font-bold text-3xl text-center uppercase font-serif text-slate-800'>
@@ -38,14 +12,14 @@ const HomeCatagorys = () => {
           {" "}
           <img src='https://i.ibb.co/1MyxJdH/3726.webp' alt='' />
           <div className='z-10 absolute left-[30%] top-[40%] flex items-center justify-between p-10 sm:py-8 bg-gray-900 text-gray-100'>
-            <Link to={`/samsung/${samsungId[0]}`}>Samsung</Link>
+            <Link to={`/samsung`}>Samsung</Link>
           </div>
         </div>
         <div className='flex flex-col row-span-3'>
           <div className='relative catagory row-span-2 col-span-2'>
             <img src='https://i.ibb.co/RyQNz5X/298426-450381.png' alt='' />
             <div className='z-10 absolute left-[30%] top-[40%] flex items-center justify-between p-10  sm:py-8 bg-gray-900 text-gray-100'>
-              <Link to={`/apple/${appleId[0]}`}>Iphone</Link>
+              <Link to={`/apple`}>Iphone</Link>
             </div>
           </div>
           <div className='relative catagory row-span-2 col-span-2'>
@@ -54,7 +28,7 @@ const HomeCatagorys = () => {
               alt=''
             />
             <div className='z-10 absolute left-[30%] top-[40%] flex items-center justify-between p-10 sm:py-8  bg-gray-900 text-gray-100'>
-              <Link to={`/walton/${waltonId[0]}`}>Walton</Link>
+              <Link to={`/walton`}>Walton</Link>
             </div>
           </div>
         </div>

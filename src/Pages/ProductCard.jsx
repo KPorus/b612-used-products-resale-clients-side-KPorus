@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../component/context/AuthProvider/AuthProvider";
 
-const ProductCard = ({ items, setbookingData }) => {
+const ProductCard = ({ product, setbookingData }) => {
   const {user}  = useContext(AuthContext);
   let {
     brandName,
@@ -18,7 +18,7 @@ const ProductCard = ({ items, setbookingData }) => {
     newPrice,
     originalPrice,
     date,
-  } = items;
+  } = product;
   return (
     <div className='flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-md bg-gray-900 text-gray-100'>
       <div className='flex space-x-4'>
@@ -57,7 +57,7 @@ const ProductCard = ({ items, setbookingData }) => {
         <label
           htmlFor='book'
           className='btn text-white bg-[#003566]  font-bold uppercase btn-info'
-          onClick={() => setbookingData(items)}>
+          onClick={() => setbookingData(product)}>
           Purchase
         </label>
       ) : (
